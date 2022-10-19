@@ -1,0 +1,93 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+!define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
+!define DEVICONS2 https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons2
+!define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
+!include DEVICONS/angular.puml
+!include DEVICONS/dotnet.puml
+!include DEVICONS2/dot_net.puml
+!include DEVICONS2/dot_net_wordmark.puml
+!include DEVICONS2/dotnetcore.puml
+!include DEVICONS/msql_server.puml
+!include FONTAWESOME/aws.puml
+!include FONTAWESOME/file_csv.puml
+
+!define AWSPUML https://raw.githubusercontent.com/milo-minderbinder/AWS-PlantUML/master/dist
+!includeurl AWSPUML/common.puml
+!includeurl AWSPUML/Storage/AmazonS3/AmazonS3.puml
+!includeurl AWSPUML/Storage/AmazonS3/bucket/bucket.puml
+!includeurl AWSPUML/Database/AmazonDynamoDB/AmazonDynamoDB.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/topic/topic.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/thingthermostat/thingthermostat.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/thinggeneric/thinggeneric.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/thinglightbulb/thinglightbulb.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/thingutility/thingutility.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/thingwindfarm/thingwindfarm.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/thingcamera/thingcamera.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/thinghouse/thinghouse.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/shadow/shadow.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/sensor/sensor.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/rule/rule.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/lambdafunction/lambdafunction.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/MQTTprotocol/MQTTprotocol.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/hardwareboard/hardwareboard.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/alexavoiceservice/alexavoiceservice.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/alexasmarthomeskill/alexasmarthomeskill.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/alexaskill/alexaskill.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/action/action.puml
+
+
+' LAYOUT_TOP_DOWN()
+
+Person(jardineiro, "Jardineiro")
+
+Container(m5core2, "M5 Core 2", "M5", "Central de monitoramento e configuraçao dos dispositivos IoT", $sprite="thinggeneric")
+Container(m5switch, "M5 Switch", "M5", "Relê digital de 2 canais que controla o Led e os Exaustores", $sprite="thinglightbulb")
+Container(m5atomlite, "M5 Env III", "M5", "Sensor que faz leituras de Temperatura, Umidade Relativa do Ar e Pressão Atmosférica", $sprite="thingthermostat")
+' Container(m5camera, "M5 Camera", "M5", $sprite="thingcamera")
+
+' Boundary(estufa, "Estufa Indoor") {
+' }
+
+Boundary(aws, "AWS IoT Core") {
+    Component(topicoEnv3, "env3", "MQTT TOPIC")
+    Component(topicoSwitchFotoperiodoStatus, "m5switch/fotoperiodo/status", "MQTT TOPIC")
+    Component(topicoSwitchFotoperiodoConfiguracao, "m5switch/fotoperiodo/configuracao", "MQTT TOPIC")
+    Component(topicoSwitchExaustor, "m5switch/exaustor", "MQTT TOPIC")
+    System(dynamoDb, "Dynamo DB", $sprite="AmazonDynamoDB")
+    ' System(lambda, "Lambda", "Leitura dos dados do sensor DHT", $sprite="lambdafunction")
+    ' System(s3, "S3", "Leitura dos dados do sensor DHT", $sprite="AmazonS3")
+
+    System(rule, "Rule Engine", $sprite="rule")
+}
+
+Rel(jardineiro, m5core2, "Configura Fotoperiodo")
+Rel(jardineiro, m5core2, "Liga/Desliga Exaustor")
+Rel(m5core2, jardineiro, "Exibe dados da estufa")
+Rel(m5core2, topicoSwitchFotoperiodoConfiguracao, "Envia nova configuração de Fotoperíodo")
+Rel(topicoSwitchFotoperiodoConfiguracao, m5switch, "Recebe nova configuraçao de Fotoperíodo")
+Rel(m5switch, topicoSwitchFotoperiodoStatus, "Envia status do Fotoperíodo quando ocorre mudança")
+Rel(m5core2, topicoSwitchExaustor, "Envia novo status do exaustor")
+Rel(topicoSwitchExaustor, m5switch, "Define status do exaustor")
+
+Rel(m5atomlite, topicoEnv3, "Envia leituras do sensor de Ambiente")
+Rel(topicoEnv3, m5core2, "Recebe os dados de Ambiente mais atuais")
+Rel(topicoEnv3, rule, "Grava os dados de Ambiente")
+Rel(rule, dynamoDb, "Armazena dados usando Timestamp como chave primária")
+
+Rel(topicoSwitchFotoperiodoStatus, rule, "Grava o status do Fotoperiodo")
+Rel(topicoSwitchFotoperiodoConfiguracao, rule, "Grava um registro de mudança na configuração do Fotoperiodo")
+
+' Lay_U(aws, estufa)
+' Lay_R(estufa, m5core2)
+
+' Lay_D(topicoEnv3, topicoSwitchFotoperiodoStatus)
+' Lay_D(topicoSwitchFotoperiodoStatus, topicoSwitchFotoperiodoConfiguracao)
+' Lay_D(topicoSwitchFotoperiodoConfiguracao, topicoSwitchExaustor)
+
+' Lay_D(m5switch, m5atomlite)
+' Lay_D(m5atomlite, m5camera)
+
+SHOW_LEGEND()
+@enduml
