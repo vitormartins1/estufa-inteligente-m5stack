@@ -40,36 +40,43 @@
 
 ' LAYOUT_TOP_DOWN()
 
-Person(jardineiro, "Jardineiro")
+Person(usuario, "Usuario")
 
-Container(m5core2, "M5 Core 2", "M5", "Central de monitoramento e configuraçao dos dispositivos IoT", $sprite="thinggeneric")
-Container(m5switch, "M5 Switch", "M5", "Relê digital de 2 canais que controla o Led e os Exaustores", $sprite="thinglightbulb")
-Container(m5atomlite, "M5 Env III", "M5", "Sensor que faz leituras de Temperatura, Umidade Relativa do Ar e Pressão Atmosférica", $sprite="thingthermostat")
+Container(m5core2, "Central Interativa", "M5Core 2", "Central de monitoramento e configuraçao dos dispositivos IoT", $sprite="thinggeneric")
+Container(m5switch, "M5Switch + RTC", "M5Atom Matrix", "Relê digital de 2 canais que controla o Led e os Exaustores", $sprite="thinglightbulb")
+Container(m5atomlite, "Env III", "M5Atom Lite", "Sensor que faz leituras de Temperatura, Umidade Relativa do Ar e Pressão Atmosférica", $sprite="thingthermostat")
 ' Container(m5camera, "M5 Camera", "M5", $sprite="thingcamera")
 
 ' Boundary(estufa, "Estufa Indoor") {
 ' }
 
 Boundary(aws, "AWS IoT Core") {
-    Component(topicoEnv3, "env3", "MQTT TOPIC")
-    Component(topicoSwitchFotoperiodoStatus, "m5switch/fotoperiodo/status", "MQTT TOPIC")
-    Component(topicoSwitchFotoperiodoConfiguracao, "m5switch/fotoperiodo/configuracao", "MQTT TOPIC")
-    Component(topicoSwitchExaustor, "m5switch/exaustor", "MQTT TOPIC")
+    Component(topicoEnv3, "dt/growtron/env3", "MQTT TOPIC")
+    Component(topicoSwitchFotoperiodoStatus, "dt/growtron/m5switch/led/status", "MQTT TOPIC")
+    Component(topicoSwitchFotoperiodoConfiguracao, "cmd/growtron/m5switch/led/fotoperiodo", "MQTT TOPIC")
+    Component(topicoSwitchExaustor, "cmd/m5switch/exaustor/status", "MQTT TOPIC")
     System(dynamoDb, "Dynamo DB", $sprite="AmazonDynamoDB")
+    Container(m5switchShadow, "M5Switch Shadow", $sprite="shadow")
     ' System(lambda, "Lambda", "Leitura dos dados do sensor DHT", $sprite="lambdafunction")
     ' System(s3, "S3", "Leitura dos dados do sensor DHT", $sprite="AmazonS3")
 
     System(rule, "Rule Engine", $sprite="rule")
 }
 
-Rel(jardineiro, m5core2, "Configura Fotoperiodo")
-Rel(jardineiro, m5core2, "Liga/Desliga Exaustor")
-Rel(m5core2, jardineiro, "Exibe dados da estufa")
+Rel(usuario, m5core2, "Configura Fotoperiodo")
+Rel(usuario, m5core2, "Liga/Desliga Exaustor")
+Rel(m5core2, usuario, "Exibe dados de ambiente")
 Rel(m5core2, topicoSwitchFotoperiodoConfiguracao, "Envia nova configuração de Fotoperíodo")
-Rel(topicoSwitchFotoperiodoConfiguracao, m5switch, "Recebe nova configuraçao de Fotoperíodo")
+Rel(topicoSwitchFotoperiodoConfiguracao, m5switchShadow, "Define nova configuraçao de Fotoperíodo")
+Rel(m5switchShadow, m5switch, "Define nova configuraçao de Fotoperíodo")
 Rel(m5switch, topicoSwitchFotoperiodoStatus, "Envia status do Fotoperíodo quando ocorre mudança")
 Rel(m5core2, topicoSwitchExaustor, "Envia novo status do exaustor")
-Rel(topicoSwitchExaustor, m5switch, "Define status do exaustor")
+Rel(topicoSwitchExaustor, m5switchShadow, "Define status do exaustor")
+
+Rel(m5switchShadow, m5switch, "Define status do exaustor")
+
+Rel(m5switch, m5switchShadow, "Envia mudança local do status do exaustor")
+''Rel(m5switchShadow, m5core2, "Atualiza status do exaustor")
 
 Rel(m5atomlite, topicoEnv3, "Envia leituras do sensor de Ambiente")
 Rel(topicoEnv3, m5core2, "Recebe os dados de Ambiente mais atuais")
@@ -78,6 +85,7 @@ Rel(rule, dynamoDb, "Armazena dados usando Timestamp como chave primária")
 
 Rel(topicoSwitchFotoperiodoStatus, rule, "Grava o status do Fotoperiodo")
 Rel(topicoSwitchFotoperiodoConfiguracao, rule, "Grava um registro de mudança na configuração do Fotoperiodo")
+Rel(topicoSwitchExaustor, rule, "Grava o status do exaustor")
 
 ' Lay_U(aws, estufa)
 ' Lay_R(estufa, m5core2)
