@@ -6,3 +6,13 @@
   "inicio": { "hora": 7, "minuto": 0 },
    "fim": { "hora": 19, "minuto": 0 }
 }
+
+{
+  "inicio": { "hora":14, "minuto":28},
+   "fim": { "hora":14, "minuto":29}
+}
+
+{
+  "ventilador": { "on": false}
+  "umidificador": { "on": false}
+}
