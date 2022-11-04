@@ -14,3 +14,26 @@ A smart greenhouse monitoring system that collects indoor environment data, cont
 - Integrar o produto com os recursos avançados de Analytics da AWS;
 - Criar um frontend e um site para hospedar o serviço;
 - Documentar o processo e metodologias;
+
+## Funcionalidades MVP
+
+- Device conectado a um sensor de umidade e temperatura publicando os dados de leitura num tópico periodicamente.
+- Dispositivo com RTC e relés para controlar o fotoperíodo e o exaustor.
+- Alarme de inicio e fim do fotoperíodo diariamente.
+- Poder configurar o fotoperíodo.
+- Dispositivo com relés para controlar o umidificador e o ventilador.
+- Dispositivo com tela e input para monitoramento e gerenciamento. 
+- Dispositivo de monitoramento deve receber os dados do sensor de umidade e temperatura do tópico correspondente e exibir na tela.
+- Dispositivo com tela e input deve poder selecionar horários de fotoperíodo e enviar a um tópico para configuração do dispositivo com RTC.
+- Dispositivo com tela e input deve controlar o exaustor, ventilador e umidificador.
+- Regras para ligar o ventilador e umidificador automaticamente de acordo com os dados de temperatura e umidade.
+- Armazenar os dados de telemetria ambiente no DynamoDB com o timestamp como chave primária.
+- Tratar reconexão de internet em caso de queda e reconexão com a AWS IoT.
+
+## Metodologia
+
+EDA Event Driven Architecture
+
+O projeto usará EDA como design pattern arquitetural. A comunicação entre os componentes é modelada usando streams de eventos realizando notificações de mudança de estado da aplicação e dos componentes promovendo baixo acoplamento. Eventos são publicados e recebidos por meio de inscrição em determinados eventos por parte dos componentes interessados. De forma que tanto o publisher quanto o subscriber não conheçam a identidade um do outro, ficando está tarefa por contra do broker.
+
+A assincronicidade promovida pelo padrão Event Driven referesse a otimização de tempo, onde não temos bloqueios de recurso para o atendimento das requisições como tradicionalmente ocorre em componentes como comunicação síncrona.
