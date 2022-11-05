@@ -1,4 +1,4 @@
-# estufa-inteligente-m5stack
+# Estufa Inteligente M5stack
  Estufa inteligente com soluções automatizadas de IoT
 
 Um sistema de monitoramento de estufa inteligente que coleta dados de ambiente internos, controla o tempo que as luzes ficam acesas, controla a itensidade da luz de acordo com a temperatura externa e interna usando IoT Analytics, e permite controlar e visualizar todas essas funcionalidades pelo dispositivo M5Stack Core2. Os dados de ambiente interno serão captados com M5Atom e Env3. O Led de cultivo será controla pelos relé do M5Switch. Todos os dispositivos estarão se comunicando via MQTT com a AWS IoT usando tópicos, regras e shadows.
@@ -32,8 +32,12 @@ A smart greenhouse monitoring system that collects indoor environment data, cont
 
 ## Metodologia
 
-EDA Event Driven Architecture
+### EDA Event Driven Architecture
 
 O projeto usará EDA como design pattern arquitetural. A comunicação entre os componentes é modelada usando streams de eventos realizando notificações de mudança de estado da aplicação e dos componentes promovendo baixo acoplamento. Eventos são publicados e recebidos por meio de inscrição em determinados eventos por parte dos componentes interessados. De forma que tanto o publisher quanto o subscriber não conheçam a identidade um do outro, ficando está tarefa por contra do broker.
 
 A assincronicidade promovida pelo padrão Event Driven referesse a otimização de tempo, onde não temos bloqueios de recurso para o atendimento das requisições como tradicionalmente ocorre em componentes como comunicação síncrona.
+
+### Cloud-Based Deployment Model
+
+Num modelo de deploy Cloud-based, você pode migrar aplicações existentes para a nuvem, ou você pode projetar e construir novas aplicações na nuvem. Essas aplicações podem ser construídas numa infraestrutura de baixo nível e custo e que requeira que o time de TI a gerencie. Alternativamente você pode construir usando serviços de alto nível quer reduzem o gerenciamento, arquitetamento e escalonamento da infraestrutura central.
