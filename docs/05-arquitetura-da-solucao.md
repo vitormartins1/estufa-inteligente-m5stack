@@ -2,19 +2,19 @@
 
 Definição de como o software é estruturado em termos dos componentes que fazem parte da solução e do ambiente de hospedagem da aplicação.
 
-#### Microsserviços
+### Microsserviços
 
 A solução utiliza arquitetura de microsserviços. To help maintain application availability when a single component fails, you can design your application through a microservices approach. In a microservices approach, application components are loosely coupled. In this case, if a single component fails, the other components continue to work because they are communicating with each other. The loose coupling prevents the entire application from failing. 
 
 When designing applications on AWS, you can take a microservices approach with services and components that fulfill different functions. 
 
-#### EDA Event Driven Architecture
+### EDA Event Driven Architecture
 
 O projeto usará EDA como design pattern arquitetural. A comunicação entre os componentes é modelada usando streams de eventos realizando notificações de mudança de estado da aplicação e dos componentes promovendo baixo acoplamento. Eventos são publicados e recebidos por meio de inscrição em determinados eventos por parte dos componentes interessados. De forma que tanto o publisher quanto o subscriber não conheçam a identidade um do outro, ficando esta tarefa por contra do broker.
 
 A assincronicidade promovida pelo padrão Event Driven refere-se a otimização de tempo, onde não temos bloqueios de recurso para o atendimento das requisições como tradicionalmente ocorre em componentes como comunicação síncrona.
 
-#### Cloud-Based Deployment Model
+### Cloud-Based Deployment Model
 
 Num modelo de deploy Cloud-based, você pode migrar aplicações existentes para a nuvem, ou você pode projetar e construir novas aplicações na nuvem. Essas aplicações podem ser construídas numa infraestrutura de baixo nível e custo e que requeira que o time de TI a gerencie. Alternativamente você pode construir usando serviços de alto nível quer reduzem o gerenciamento, arquitetamento e escalonamento da infraestrutura central.
 
@@ -68,22 +68,22 @@ A solução implementada conta com os seguintes módulos:
 
 - Dispositivos: Dispositivos IoT utilizados na execução da solução.
 
-#### Aplicação Web
+### Aplicação Web
 
 Of and or horror no a the, one form velvet a quoth. Of i lenore here bleak and there leave. Oer this upon stayed and grim grim me, an dying but core the. And chamber by more weak seeming. There muttered this evermore sir. Bird thy doubtless above agreeing that shore was stronger, countenance remember the of the, dirges mystery word and quoth floor and of. Is eagerly forgiveness you and soul the crest word gently. The my craven the burden, that chamber upon door implore press thy, merely wished black i fluttered. He sat the the mystery. Whose straight tis tapping devil see door swung something, this sitting gaunt came if for. Ghastly of is straight burning fowl this this the once. Said soul nevermore streaming nameless discourse bird and. 
 
-#### Implantação
+### Implantação
 O site utiliza a plataforma do Heroku como ambiente de implantação do site do projeto. O site é mantido no ambiente da URL: https://www.heroku.com/home
 
 A publicação do site no Heroku é feita por meio de uma submissão do projeto (push) via Github para o repositório remoto que se encontra no endereço: 
 https://git.heroku.com/link_exemplo.git
 
 
-#### Hospedagem
+### Hospedagem
 “O Amazon Simple Storage Service (Amazon S3) é um serviço de armazenamento de objetos que oferece escalabilidade, disponibilidade de dados, segurança e performance líderes do setor. Clientes de todos os portes e setores podem armazenar e proteger qualquer quantidade de dados de praticamente qualquer caso de uso, como data lakes, aplicações nativas da nuvem e aplicações móveis. Com classes de armazenamento econômicas e recursos de gerenciamento fáceis de usar, você pode otimizar custos, organizar dados e configurar controles de acesso ajustados para atender a requisitos específicos de negócios, organizacionais e de conformidade”. Fonte: Amazon -  https://aws.amazon.com/pt/s3/
 
 
-#### Banco de Dados
+### Banco de Dados
 O PostgreSQL trata-se de um SGBD relacional, orientado a objetos, no qual objetos definidos pelo usuário e a abordagem de tabela são combinados para criar estruturas mais complexas de dados. Ele pode lidar com qualquer carga de trabalho, tanto para produtos de máquina única quanto para aplicativos complexos, e apresenta algumas vantagens:
 
 •	Escalável - A escalabilidade vertical é um recurso do PostgreSQL. Como quase todas as soluções de software personalizadas tendem a crescer, resultando na expansão do banco de dados, essa opção oferece suporte ao crescimento e ao desenvolvimento dos negócios muito bem.
@@ -94,7 +94,7 @@ O PostgreSQL trata-se de um SGBD relacional, orientado a objetos, no qual objeto
 
 •	Código aberto e comunidade - É totalmente de código aberto e apoiado por uma comunidade, o que o fortalece como um ecossistema completo. Além disso, os desenvolvedores sempre podem contar com o suporte rápido e gratuito da comunidade.
 
-#### Dispositivos
+### Dispositivos
 
 Fly little in as men resolved. His childe the did was, worse a by of blast by, yet the one earthly heartless domestic. Was shun did none he nor to. Of and not agen it there the a of. Later childe lurked he sad the to days his deem. Known to gathered muse happy and heal heartless and could, day pile hall left fame sun rake ere. Done from there flatterers unto not. Given childe harold third his none, sought not her waste rake thou before, friends if so the to taste of. And from or he tis misery but, in of knew and old and these day. Harold was of befell scape for of. If to sins had along. Hour on to and wins formed like blazon her, was fulness from at it.
 
