@@ -39,6 +39,7 @@
 
 
 ' LAYOUT_TOP_DOWN()
+LAYOUT_AS_SKETCH()
 
 Person(usuario, "Usuario")
 

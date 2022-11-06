@@ -5,6 +5,19 @@ Um sistema de monitoramento de estufa inteligente que coleta dados de ambiente i
 
 A smart greenhouse monitoring system that collects indoor environment data, controls how long the lights are on, controls the light intensity according to outdoor and indoor temperature using IoT Analytics, and allows you to control and visualize all these functionality from the device M5Stack Core2. Indoor data will be captured with M5Atom and Env3. The grow LED will be controlled by the M5Switch relay. All devices will be communicating via MQTT with AWS IoT using topics, rules and shadows.
 
+# Documentação
+
+<ol>
+<li><a href="docs/01-documentacao-de-contexto.md"> Documentação de Contexto</a></li>
+<li><a href="docs/02-especificacao-do-projeto.md"> Especificação do Projeto</a></li>
+<li><a href="docs/03-metodologia.md"> Metodologia</a></li>
+<li><a href="docs/04-projeto-de-interface.md"> Projeto de Interface</a></li>
+<li><a href="docs/05-arquitetura-da-solucao.md"> Arquitetura da Solução</a></li>
+<li><a href="docs/06-template-padrao-da-aplicacao.md"> Template Padrão da Aplicação</a></li>
+<li><a href="docs/07-apresentacao-do-projeto.md"> Apresentação do Projeto</a></li>
+<li><a href="docs/08-referencias.md"> Referências</a></li>
+</ol>
+
 ## Roadmap
 
 - Criar um MVP focado nas funcionadades básicas;
@@ -15,19 +28,23 @@ A smart greenhouse monitoring system that collects indoor environment data, cont
 - Criar um frontend e um site para hospedar o serviço;
 - Documentar o processo e metodologias;
 
-## Funcionalidades MVP
+## MVP
 
+### Dispositivos
 - Device conectado a um sensor de umidade e temperatura publicando os dados de leitura num tópico periodicamente.
 - Dispositivo com RTC e relés para controlar o fotoperíodo e o exaustor.
-- Alarme de inicio e fim do fotoperíodo diariamente.
-- Poder configurar o fotoperíodo.
 - Dispositivo com relés para controlar o umidificador e o ventilador.
 - Dispositivo com tela e input para monitoramento e gerenciamento. 
-- Dispositivo de monitoramento deve receber os dados do sensor de umidade e temperatura do tópico correspondente e exibir na tela.
-- Dispositivo com tela e input deve poder selecionar horários de fotoperíodo e enviar a um tópico para configuração do dispositivo com RTC.
-- Dispositivo com tela e input deve controlar o exaustor, ventilador e umidificador.
-- Regras para ligar o ventilador e umidificador automaticamente de acordo com os dados de temperatura e umidade.
+
+### Funcionalidades
+- Dispositivo RTC com alarme de inicio e fim do fotoperíodo diariamente.
+- Dispositivo RTC com fotoperíodo configurável via tópico.
+- Dispositivo de monitoramento deve exibir os dados do sensor de umidade e temperatura em tempo real.
+- Dispositivo de monitoramento deve poder selecionar horários de fotoperíodo e enviar a um tópico para configuração do dispositivo com RTC.
+- Dispositivo de monitoramento deve controlar o exaustor, ventilador e umidificador.
+- Regras para ligar o ventilador e umidificador automaticamente de acordo com os dados do tópico de temperatura e umidade.
 - Armazenar os dados de telemetria ambiente no DynamoDB com o timestamp como chave primária.
+- Produzir logs de análise e debug com AWS CloudWatch.
 - Tratar reconexão de internet em caso de queda e reconexão com a AWS IoT.
 
 ## Metodologia
