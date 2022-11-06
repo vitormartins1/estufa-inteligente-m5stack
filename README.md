@@ -1,4 +1,4 @@
-# Estufa Inteligente M5stack
+# Estufa Inteligente M5Stack
  Estufa inteligente com soluções automatizadas de IoT.
 
 O projeto consiste num sistema de monitoramento de estufa inteligente que coleta dados de ambiente internos, controla o tempo que as luzes ficam acesas, controla a intensidade da luz de acordo com a temperatura externa e interna, criando um ambiente ideal para as plantas usando IoT Analytics. Permite controlar e visualizar todas essas funcionalidades pelo dispositivo de controle e monitoramento M5Stack Core2. Os dados de ambiente interno serão captados com M5Atom e Env3 e armazenados no DynamoDB para processamento posterior pelos serviços de analytics. O Led de cultivo será controlado pelos relés do M5Switch de acordo com o horário de ligar/desligar configurados. Todos os dispositivos estarão se comunicando via MQTT com a AWS IoT usando tópicos, regras e shadows quando aplicável.
