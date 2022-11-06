@@ -19,7 +19,7 @@ Links úteis de documentações usadas como referência e consulta durante o des
 ### Tecnologias
 
 - [AWS IoT Core](https://docs.aws.amazon.com/iot/index.html)
-- [AWS IoT Device Shadow service](https://docs.aws.amazon.com/iot/latest/- developerguide/iot-device-shadows.html)
+- [AWS IoT Device Shadow service](https://docs.aws.amazon.com/iot/latest/developerguide/iot-device-shadows.html)
 - [AWS IoT Analytics](https://aws.amazon.com/pt/iot-analytics/)
 - [AWS Lambda](https://docs.aws.amazon.com/lambda/index.html)
 - [Amazon DynamoDB](https://docs.aws.amazon.com/dynamodb/index.html)
