@@ -80,19 +80,13 @@ https://git.heroku.com/link_exemplo.git
 
 
 ### Hospedagem
-“O Amazon Simple Storage Service (Amazon S3) é um serviço de armazenamento de objetos que oferece escalabilidade, disponibilidade de dados, segurança e performance líderes do setor. Clientes de todos os portes e setores podem armazenar e proteger qualquer quantidade de dados de praticamente qualquer caso de uso, como data lakes, aplicações nativas da nuvem e aplicações móveis. Com classes de armazenamento econômicas e recursos de gerenciamento fáceis de usar, você pode otimizar custos, organizar dados e configurar controles de acesso ajustados para atender a requisitos específicos de negócios, organizacionais e de conformidade”. Fonte: Amazon -  https://aws.amazon.com/pt/s3/
 
 
 ### Banco de Dados
-O PostgreSQL trata-se de um SGBD relacional, orientado a objetos, no qual objetos definidos pelo usuário e a abordagem de tabela são combinados para criar estruturas mais complexas de dados. Ele pode lidar com qualquer carga de trabalho, tanto para produtos de máquina única quanto para aplicativos complexos, e apresenta algumas vantagens:
 
-•	Escalável - A escalabilidade vertical é um recurso do PostgreSQL. Como quase todas as soluções de software personalizadas tendem a crescer, resultando na expansão do banco de dados, essa opção oferece suporte ao crescimento e ao desenvolvimento dos negócios muito bem.
+O DynamoDB é um banco de dados sem servidor (serverless), significa que não é necessário gerenciar instancias ou a infraestrutura necessária para executar o banco de dados. Independente da quantidade de dados existentes nas tabelas o DynamoDB gerencia o armazenamento necessário enquanto mantém uma performance consistente, fazendo com que a equipe de TI não precise se preocupar com o escalonamento do sistema para cima ou para baixo. Os recursos de banco de dados são provisionados de forma automática.
 
-•	Suporte para tipos de dados personalizados - O PostgreSQL suporta nativamente um grande número de tipos de dados padrão, como JSON, XML, etc. O PostgreSQL obtém vantagem disso, pois é um dos poucos bancos de dados relacionais que oferece forte suporte para a funcionalidade NoSQL. Além disso, permite que os usuários definam seus próprios tipos de dados. 
-
-•	Ferramentas de terceiros fáceis de integrar - O sistema de gerenciamento de banco de dados PostgreSQL oferece suporte a ferramentas adicionais, tanto gratuitas quanto comerciais. 
-
-•	Código aberto e comunidade - É totalmente de código aberto e apoiado por uma comunidade, o que o fortalece como um ecossistema completo. Além disso, os desenvolvedores sempre podem contar com o suporte rápido e gratuito da comunidade.
+Além de toda infraestrutura oferecida ele é um banco de dados não relacional de alta performance, oferecendo rápidos tempos de resposta e flexibilidade ao manipular dados.
 
 ### Dispositivos
 
