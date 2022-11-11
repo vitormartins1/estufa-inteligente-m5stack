@@ -23,6 +23,7 @@ O link e o usuário/senha descritos acima são apenas exemplos de como tais info
 <li><a href="docs/05-arquitetura-da-solucao.md"> Arquitetura da Solução</a></li>
 <li><a href="docs/06-template-padrao-da-aplicacao.md"> Template Padrão da Aplicação</a></li>
 <li><a href="docs/07-funcionalidades.md"> Funcionalidades</a></li>
+<li><a href="docs/estrutura-de-topicos.md"> Estrutura de Tópicos MQTT</a></li>
 <li><a href="docs/08-apresentacao-do-projeto.md"> Apresentação do Projeto</a></li>
 <li><a href="docs/09-referencias.md"> Referências</a></li>
 </ol>
