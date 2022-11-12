@@ -33,6 +33,7 @@ Books is ghastly visiter eyes upon, thy feather art and sculptured before implor
 <li><a href="05-arquitetura-da-solucao.md"> Arquitetura da Solução</a></li>
 <li><a href="06-template-padrao-da-aplicacao.md"> Template Padrão da Aplicação</a></li>
 <li><a href="07-funcionalidades.md"> Funcionalidades</a></li>
+<li><a href="estrutura-de-topicos.md"> Estrutura de Tópicos MQTT</a></li>
 <li><a href="08-apresentacao-do-projeto.md"> Apresentação do Projeto</a></li>
 <li><a href="09-referencias.md"> Referências</a></li>
 </ol>
