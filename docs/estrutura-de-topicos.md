@@ -72,6 +72,7 @@ Exemplo:
 #### `publish`
 MQTT Test Client
 Core2
+Environment Control Rule
 #### `subscribe`
 M5Switch Enviroment
 ### `cmd/growtron/m5envcontrol/ventilador`
@@ -86,6 +87,7 @@ Exemplo:
 #### `publish`
 MQTT Test Client
 Core2
+Environment Control Rule
 #### `subscribe`
 M5Switch Enviroment
 ### `dt/growtron/log`
