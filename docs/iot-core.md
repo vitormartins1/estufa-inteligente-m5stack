@@ -72,14 +72,14 @@ Exemplo:
 #### `subscribe`
 - m5env3
 ### `dt/growtron/m5env3`
-Tópico de dados que são publicados as leituras do sensor de umidade, temperatura e pressão através do dispositivo *m5env3*.
+Tópico de dados que são publicadas as leituras do sensor de umidade, temperatura e pressão através do dispositivo *m5env3*.
 
 Exemplo:
 ```json
 {
-  "humi": "66.7",
-  "pres": "101137",
-  "temp": "27.37"
+  "humi": 66.7,
+  "pres": 101137,
+  "temp": 27.37
 }
 ```
 #### `publish`
@@ -89,13 +89,19 @@ Exemplo:
 - environmentTelemetryDynamoDBRule
 - environmentControlRepublishRule
 ### `cmd/growtron/m5photoperiod/fotoperiodo`
-Tópico de comando que publica a configuração de início e fim do fotoperíodo. O dispositivo *m5photoperiod* que controla o fotoperíodo e o exaustor se inscreve neste tópico para receber e configurar a nova configuração de fotoperíodo.
+Tópico de comando que publica a configuração de início e fim do fotoperíodo. O dispositivo *m5photoperiod* se inscreve neste tópico para receber e configurar o novo fotoperíodo. A regra *photoperiodConfigDynamoDBRule* se inscreve para registrar a nova configuração numa tabela.
 
 Exemplo:
 ```json
 {
-  "inicio": { "hora":14, "minuto":28},
-  "fim": { "hora":14, "minuto":29}
+  "inicio": { 
+    "hora":14, 
+    "minuto":28
+  },
+  "fim": { 
+    "hora":14, 
+    "minuto":29
+  }
 }
 ```
 #### `publish`

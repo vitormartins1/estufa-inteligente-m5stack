@@ -42,7 +42,7 @@ Descrição das tabelas utilizadas no DynamoDB para armazenar dados de telemetri
 #### `relay_status`
 |timestamp|relay_status|relay_type|
 |:-------:|:----------:|:--------:|
-|1668381577914|1|umidificador|
+|1668381577914|0|umidificador|
 |1668381577914|1|umidificador|
 |1668381573139|1|ventilador|
 |1668381521143|0|ventilador|
