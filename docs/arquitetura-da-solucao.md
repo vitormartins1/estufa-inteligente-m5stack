@@ -20,19 +20,36 @@ Num modelo de deploy Cloud-based, você pode migrar aplicações existentes para
 
 ## Diagrama de Arquitetura
 
-O diagrama de arquitetura ilustra graficamente como será a estrutura da arquitetura da solução, e como cada os microsserviços e componentes estarão interligados. 
+O diagrama de arquitetura ilustra graficamente como será a estrutura da arquitetura da solução, e como cada um dos microsserviços e componentes estarão interligados. 
 
-![Diagrama de Arquitetura](../out/docs/arquitetura/arquitetura/arquitetura.png)
-
-## Modelo Entidade Relacional
-
-O Modelo ER representa através de um diagrama como as entidades se relacionam entre si na aplicação interativa. 
+![Diagrama de Arquitetura](../out/docs/arquitetura/arquitetura/arquitetura.png) 
 
 ## Projeto da Base de Dados
-
-O projeto da base de dados corresponde à representação das entidades e relacionamentos identificadas no Modelo ER, no formato de tabelas, com colunas e chaves primárias/estrangeiras necessárias para representar corretamente as restrições de integridade.
- 
-Para mais informações, consulte o microfundamento "Modelagem de Dados".
+Descrição das tabelas utilizadas no DynamoDB para armazenar dados de telemetria, configuração e mudanças de status.
+#### `environment_telemetry`
+|timestamp|humi|pres|temp|
+|:-------:|:--:|:--:|:--:|
+|1668382103919|63.2|100744|29.36|
+|1668381862581|60.2|100746|29.85|
+|1668381983208|62.3|100744|29.39|
+|1668382043451|63.2|100743|29.32|
+|1668383430617|59.4|100751|28.64|
+#### `photoperiod_configuration`
+|timestamp|fim|inicio|
+|:-------:|:-:|:----:|
+|1668368150734|19:0|7:0|
+|1668373591323|23:0|5:0|
+#### `relay_status`
+|timestamp|relay_status|relay_type|
+|:-------:|:----------:|:--------:|
+|1668381577914|1|umidificador|
+|1668381577914|1|umidificador|
+|1668381573139|1|ventilador|
+|1668381521143|0|ventilador|
+|1668381515788|0|exaustor|
+|1668381473996|1|exaustor|
+|1668381468839|1|led|
+|1668381429109|0|led|
 
 ## Tecnologias Utilizadas
 
@@ -100,14 +117,14 @@ Fly little in as men resolved. His childe the did was, worse a by of blast by, y
 # Documentação
 
 <ol>
-<li><a href="01-documentacao-de-contexto.md"> Documentação de Contexto</a></li>
-<li><a href="02-especificacao-do-projeto.md"> Especificação do Projeto</a></li>
-<li><a href="03-metodologia.md"> Metodologia</a></li>
-<li><a href="04-projeto-de-interface.md"> Projeto de Interface</a></li>
-<li><a href="05-arquitetura-da-solucao.md"> Arquitetura da Solução</a></li>
-<li><a href="06-template-padrao-da-aplicacao.md"> Template Padrão da Aplicação</a></li>
-<li><a href="07-funcionalidades.md"> Funcionalidades</a></li>
-<li><a href="estrutura-de-topicos.md"> Estrutura de Tópicos MQTT</a></li>
-<li><a href="08-apresentacao-do-projeto.md"> Apresentação do Projeto</a></li>
-<li><a href="09-referencias.md"> Referências</a></li>
+<li><a href="documentacao-de-contexto.md"> Documentação de Contexto</a></li>
+<li><a href="especificacao-do-projeto.md"> Especificação do Projeto</a></li>
+<li><a href="funcionalidades.md"> Funcionalidades</a></li>
+<li><a href="metodologia.md"> Metodologia</a></li>
+<li><a href="projeto-de-interface.md"> Projeto de Interface</a></li>
+<li><a href="template-padrao-da-aplicacao.md"> Template Padrão da Aplicação</a></li>
+<li><a href="arquitetura-da-solucao.md"> Arquitetura da Solução</a></li>
+<li><a href="iot-core.md">IoT Core</a></li>
+<li><a href="apresentacao-do-projeto.md"> Apresentação do Projeto</a></li>
+<li><a href="referencias.md"> Referências</a></li>
 </ol>
