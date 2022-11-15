@@ -8,6 +8,10 @@ A solução utiliza arquitetura de microsserviços. To help maintain application
 
 When designing applications on AWS, you can take a microservices approach with services and components that fulfill different functions. 
 
+O acoplamento fraco ajuda a isolar o comportamento de um componente de outros componentes que dependem dele, aumentando a resiliência e a agilidade. Uma alteração ou uma falha em um dos componentes não deve afetar os outros componentes.
+
+Para obter mais informações sobre as melhores práticas da Nuvem AWS, consulte AWS Well-Architected Framework.
+
 ### EDA Event Driven Architecture
 
 O projeto usará EDA como design pattern arquitetural. A comunicação entre os componentes é modelada usando streams de eventos realizando notificações de mudança de estado da aplicação e dos componentes promovendo baixo acoplamento. Eventos são publicados e recebidos por meio de inscrição em determinados eventos por parte dos componentes interessados. De forma que tanto o publisher quanto o subscriber não conheçam a identidade um do outro, ficando esta tarefa por contra do broker.
