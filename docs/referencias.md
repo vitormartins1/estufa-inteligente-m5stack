@@ -34,6 +34,9 @@ Links úteis de documentações usadas como referência e consulta durante o des
 - [Rules for AWS IoT](https://docs.aws.amazon.com/iot/latest/developerguide/iot-rules.html)
 - [MQTT design best practices](https://docs.aws.amazon.com/whitepapers/latest/designing-mqtt-topics-aws-iot-core/mqtt-design-best-practices.html)
 
+## Imagens
+- [Vectors by zaurrahimov](https://www.vectorstock.com/royalty-free-vectors/vectors-by_zaurrahimov) 
+
 # Documentação
 
 <ol>

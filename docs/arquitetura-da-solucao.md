@@ -25,6 +25,10 @@ O diagrama de arquitetura ilustra graficamente como será a estrutura da arquite
 ![Diagrama de Arquitetura](../out/docs/arquitetura/arquitetura/arquitetura.png) 
 
 ## Projeto da Base de Dados
+O DynamoDB é um banco de dados sem servidor (serverless), significa que não é necessário gerenciar instancias ou a infraestrutura necessária para executar o banco de dados. Independente da quantidade de dados existentes nas tabelas o DynamoDB gerencia o armazenamento necessário enquanto mantém uma performance consistente, fazendo com que a equipe de TI não precise se preocupar com o escalonamento do sistema para cima ou para baixo. Os recursos de banco de dados são provisionados de forma automática.
+
+Além de toda infraestrutura oferecida ele é um banco de dados não relacional de alta performance, oferecendo rápidos tempos de resposta e flexibilidade ao manipular dados.
+
 Descrição das tabelas utilizadas no DynamoDB para armazenar dados de telemetria, configuração e mudanças de status.
 #### `environment_telemetry`
 |timestamp|humi|pres|temp|
