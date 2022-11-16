@@ -54,15 +54,6 @@ SELECT
   timestamp() as timestamp 
 FROM 'cmd/growtron/m5photoperiod/fotoperiodo'
 ```
-#### relayStatusDynamoDBRule
-##### `dt/growtron/relay/#/status`
-```sql
-SELECT
-  topic(4) as relay_type,
-  relayStatus as relay_status, 
-  timestamp() as timestamp 
-FROM 'dt/growtron/relay/+/status'
-```
 ## Tópicos
 Como padronização os tópicos irão usar apenas lowercase, números e dashes e seguirão um padrão de nomenclatura do geral ao específico onde os níveis fluam da esquerda para a direita. Também deverão incluir qualquer informação de roteamento relevante em seus níveis.
 Tópicos de leitura e feedback de estados possuem o prefixo *'dt/'* indicando que o tópico se refere a dados, enquanto tópicos de comando usam o prefixo *'cmd/'*.
@@ -94,7 +85,7 @@ Exemplo:
 - m5env3
 #### `subscribe`
 - m5core2central
-- environmentTelemetryDynamoDBRule
+- environmentTelemetryIotAnalyticsRule
 - environmentControlRepublishRule
 ### `cmd/growtron/m5photoperiod/fotoperiodo`
 Tópico de comando que publica a configuração de início e fim do fotoperíodo. O dispositivo *m5photoperiod* se inscreve neste tópico para receber e configurar o novo fotoperíodo. A regra *photoperiodConfigDynamoDBRule* se inscreve para registrar a nova configuração numa tabela.
@@ -103,12 +94,12 @@ Exemplo:
 ```json
 {
   "inicio": { 
-    "hora":14, 
-    "minuto":28
+    "hora":6, 
+    "minuto":0
   },
   "fim": { 
-    "hora":14, 
-    "minuto":29
+    "hora":22, 
+    "minuto":0
   }
 }
 ```
