@@ -14,8 +14,7 @@ Informações relacionadas a Things, Shadows, Regras e Tópicos usados no AWS Io
 
 ## Regras
 #### environmentControlRepublishRule
-##### `dt/growtron/m5env3`
-##### `cmd/growtron/m5envcontrol/relay`
+Faz verificações na temperatura e umidade recebida pelo tópico `dt/growtron/m5env3` e republica uma mensagem no tópico `cmd/growtron/m5envcontrol/relay` com o comando de ligar ou desligar o ventilador ou o umidificador.
 ```sql
 SELECT 
   CASE true
@@ -29,16 +28,25 @@ SELECT
   END as ventilador
 FROM 'dt/growtron/m5env3'
 ```
-#### environmentTelemetryDynamoDBRule
-##### `dt/growtron/m5env3`
+#### environmentTelemetryIotAnalyticsRule
+Insere o timestamp e envia o payload do tópico `dt/growtron/m5env3` para um channel do IoT Analytics.
 ```sql
 SELECT 
   *, 
   timestamp() as timestamp 
 FROM 'dt/growtron/m5env3'
 ```
+#### relayTelemetryIotAnalyticsRule
+Seleciona o quarto nível do tópico `dt/growtron/relay/#/status` como o tipo de rele, o estado do rele e o timestamp e os envia para um channel do IoT Analytics.
+```sql
+SELECT
+  topic(4) as relay_type,
+  relayStatus as relay_status, 
+  timestamp() as timestamp 
+FROM 'dt/growtron/relay/+/status'
+```
 #### photoperiodConfigDynamoDBRule 
-##### `cmd/growtron/m5photoperiod/fotoperiodo`
+Grava no DynamoDB todas as configurações de fotoperíodo publicadas no tópico `cmd/growtron/m5photoperiod/fotoperiodo` usando o timestamp como chave primária.
 ```sql
 SELECT
   concat(inicio.hora, ":", inicio.minuto) AS inicio, 
@@ -155,6 +163,7 @@ Exemplo:
 - m5envcontrol
 #### `subscribe`
 - relayStatusDynamoDBRule
+- relayTelemetryIotAnalyticsRule
 
 # Documentação
 
