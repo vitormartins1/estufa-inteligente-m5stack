@@ -24,6 +24,11 @@ Distribuir de forma coerente o conteúdo a ser apresentado, dentro do tempo dete
 > - [Top Tips for Effective Presentations](https://www.skillsyouneed.com/present/presentation-tips.html)
 > - [How to make a great presentation](https://www.ted.com/playlists/574/how_to_make_a_great_presentation)
 
+## Monitoramento de Automação de Ambiente
+#### Média de Temperatura e Umidade Relativa do Ar por Minuto e Estado dos Relés
+O estado dos relés influencia diretamente na temperatura e umidade do ambiente. A umidade relativa do ar deve ficar entre os limites de 55% e 75% enquanto a temperatura deve ficar a baixo de 29 °C. Um regra é aplicada a cada atualização de telemetria ambiente que envia um evento para o dispositivo ligar ou desligar o umidificador ou o ventilador de acordo com os limites.
+<img src="estufa_inteligente_telemetry_dataset_analysis_2.jpg">
+
 # Documentação
 
 <ol>

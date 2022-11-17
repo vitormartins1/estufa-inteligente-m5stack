@@ -18,7 +18,7 @@ Faz verificações na temperatura e umidade recebida pelo tópico `dt/growtron/m
 ```sql
 SELECT 
   CASE true
-    WHEN humi > 70 THEN false
+    WHEN humi > 75 THEN false
     WHEN humi < 55 THEN true
     ELSE null 
   END as umidificador, 
@@ -37,11 +37,21 @@ SELECT
 FROM 'dt/growtron/m5env3'
 ```
 #### relayTelemetryIotAnalyticsRule
-Seleciona o quarto nível do tópico `dt/growtron/relay/#/status` como o tipo de rele, o estado do rele e o timestamp e os envia para um channel do IoT Analytics.
+Seleciona o quarto nível do tópico `dt/growtron/relay/#/status` como o alias do estado do rele e o envia junto com o timestamp para um channel do IoT Analytics.
 ```sql
 SELECT
-  topic(4) as relay_type,
-  relayStatus as relay_status, 
+  CASE topic(4)
+    WHEN 'ventilador' THEN relayStatus
+  END as ventilador,
+  CASE topic(4)
+    WHEN 'umidificador' THEN relayStatus
+  END as umidificador,
+  CASE topic(4)
+    WHEN 'led' THEN relayStatus
+  END as led,
+  CASE topic(4)
+    WHEN 'exaustor' THEN relayStatus
+  END as exaustor,
   timestamp() as timestamp 
 FROM 'dt/growtron/relay/+/status'
 ```
@@ -53,6 +63,15 @@ SELECT
   concat(fim.hora, ":", fim.minuto) AS fim, 
   timestamp() as timestamp 
 FROM 'cmd/growtron/m5photoperiod/fotoperiodo'
+```
+#### relayStatusDynamoDBRule
+Seleciona o quarto nível do tópico `dt/growtron/relay/#/status` como o tipo de rele, o estado do rele e o timestamp e grava no DynamoDB.
+```sql
+SELECT
+  topic(4) as relay_type,
+  relayStatus as relay_status, 
+  timestamp() as timestamp 
+FROM 'dt/growtron/relay/+/status'
 ```
 ## Tópicos
 Como padronização os tópicos irão usar apenas lowercase, números e dashes e seguirão um padrão de nomenclatura do geral ao específico onde os níveis fluam da esquerda para a direita. Também deverão incluir qualquer informação de roteamento relevante em seus níveis.
@@ -138,10 +157,10 @@ Exemplo:
 - m5envcontrol
 ### `dt/growtron/relay/+/status`
 Tópico usado pelos relés para informar quando houver uma mudança de estado. O nível do tópico com o "+" será o tipo do relé. Os seguintes tipos serão usados:
-- `dt/growtron/relay/led/status`
-- `dt/growtron/relay/exaustor/status`
-- `dt/growtron/relay/umidificador/status`
-- `dt/growtron/relay/ventilador/status`
+- dt/growtron/relay/**led**/status
+- dt/growtron/relay/**exaustor**/status`
+- dt/growtron/relay/**umidificador**/status
+- dt/growtron/relay/**ventilador**/status
   
 Exemplo:
 ```json
