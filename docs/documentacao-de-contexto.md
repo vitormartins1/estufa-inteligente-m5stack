@@ -36,7 +36,7 @@ Desenvolver um software de automação e monitoramento de ambiente para gerar as
 
 ## Justificativa
 
-Acredito que essa prática amadora de agricultura trás um certo contato quase que intrínseco do ser humano de fixar-se em um local por conta do cultivo de alimentos. Isso é histórico, há milênios o ser humano parou de ser nômade para se fixar em uma região por conta da agricultura.
+Acredito que essa prática amadora de agricultura trás um certo contato quase que intrínseco do ser humano de fixar-se em um local por conta do cultivo de alimentos. Isso é histórico, a milênios o ser humano parou de ser nômade para se fixar em uma região por conta da agricultura.
 
 Claro que o mundo moderno modela o ser humano para a conveniência, ou seja, tudo esta muito acessível. No caso do consumo de alimentos é o mesmo, geralmente o indivíduo não tem a noção de toda cadeia de dedicação, trabalho e tempo que leva para que o alimento chegue na mesa do consumidor.
 
