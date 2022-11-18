@@ -46,7 +46,7 @@ O meio ambiente está no centro de tudo, estimular o plantio de árvores e o cul
 
 ## Público-Alvo
 
-Pessoas iniciantes ou veteranas no cultivo caseiro que busquem soluções para controle de clima ou inovação no plantio e que enxergam sistemas de automação como soluções para seus problemas de tempo.
+Pessoas iniciantes ou veteranas no cultivo caseiro que busquem soluções para controle de clima ou inovação no plantio e que enxergam sistemas de automação como soluções para suas dores e para seu tempo.
 
 # Documentação
 
