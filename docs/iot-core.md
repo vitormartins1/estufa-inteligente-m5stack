@@ -19,7 +19,7 @@ Faz verificações na temperatura e umidade recebida pelo tópico `dt/growtron/m
 SELECT 
   CASE true
     WHEN humi > 75 THEN false
-    WHEN humi < 55 THEN true
+    WHEN humi < 60 THEN true
     ELSE null 
   END as umidificador, 
   CASE true

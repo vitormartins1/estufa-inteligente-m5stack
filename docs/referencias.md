@@ -29,6 +29,7 @@ Links úteis de documentações usadas como referência e consulta durante o des
 ## Artigos
 
 - [What is barometric pressure?](https://esenssys.com/what-is-barometric-pressure/)
+- [Cultivo Domiciliar de Plantas para Consumo Próprio](https://www.agrointeracao.com.br/blog/2019/10/20/cultivo-domiciliar-de-plantas-para-consumo-proprio/)
 - [Monitoring and logging for AWS IoT Wireless using Amazon CloudWatch](https://docs.aws.amazon.com/iot/latest/developerguide/connect-iot-lorawan-logging-monitoring.html)
 - [Alexa Voice Service (AVS) Integration for AWS IoT](https://docs.aws.amazon.com/iot/latest/developerguide/avs-integration-aws-iot.html)
 - [Rules for AWS IoT](https://docs.aws.amazon.com/iot/latest/developerguide/iot-rules.html)
