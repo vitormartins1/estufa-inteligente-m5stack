@@ -31,6 +31,8 @@ Desenvolver um software de automação e monitoramento de ambiente para gerar as
 - Proporcionar menor ou nenhuma intervenção do cultivador no clima.
 - Demonstrar como um processo de automação gera valor ao cultivador e ao cultivo.
 - Prover uma maior eficiência e economia na utilização de ventiladores e umidificadores.
+- Analisar o impacto do sistema em diferentes situações climáticas.
+- Comparar dados de ambiente do cultivo com e sem o sistema de automação para comprovar suas eficácia.
 
 ## Justificativa
 
