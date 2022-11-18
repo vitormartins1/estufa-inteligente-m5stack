@@ -49,7 +49,11 @@ As ferramentas empregadas no projeto são:
 | Instalação de Firmware | UIFlow Firmware Burning Tool | http://docs.m5stack.com/en/download
 | Banco de Dados | DynamoDB | https://aws.amazon.com/pt/dynamodb/ |
 | Broker MQTT | AWS IoT Core | https://aws.amazon.com/pt/iot-core/ |
-| Biblioteca Gráfica | LVGL - Light and Versatile Graphics Library | https://lvgl.io/ |
+| Geração de Gráficos | Amazon QuickSight | https://docs.aws.amazon.com/quicksight/latest/user/welcome.html |
+
+O editor de código fonte UIFlow Web IDE foi escolhido pois oferece programação visual por blocos e uma capacidade de rápida prototipação de ideias sem a necessidade de configurações complexas e codificação verbosa. Além disso possuiu um sistema de deploy e gerenciamento de arquivos nos dispositivos. 
+
+Uma alternativa ao uso do UIFlow Web IDE seria utilizar o VisualStudio Code e desenvolver o código fonte com micropyton em conjunto com o SDK dos dispositivos M5Stack, o SDK da AWS e a biblioteca de interface de usuário LVGL. Outra alternativa seria usar no VisualStudio o .Net nanoFramework e a linguagem C# pois oferecem suporte aos dispositivos M5Stack e ao SDK da AWS, tendo como único ponto negativo a ausência de uma interface gráfica de usuário de qualidade que possa ser usada a nível de usuário final. 
 
 # Documentação
 
