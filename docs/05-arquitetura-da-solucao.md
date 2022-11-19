@@ -4,13 +4,9 @@ Definição de como o software é estruturado em termos dos componentes que faze
 
 ### Microsserviços
 
-A solução utiliza arquitetura de microsserviços. To help maintain application availability when a single component fails, you can design your application through a microservices approach. In a microservices approach, application components are loosely coupled. In this case, if a single component fails, the other components continue to work because they are communicating with each other. The loose coupling prevents the entire application from failing. 
-
-When designing applications on AWS, you can take a microservices approach with services and components that fulfill different functions. 
+A solução utiliza arquitetura de microsserviços para ajudar a manter a disponibilidade da aplicação quando um único componente falha. Numa arquitetura de microsserviços, os componentes da aplicação tem fraco acoplamento. Nesse caso, se um componente falhar, os outros componentes continuam o trabalho pois estão se comunicando uns com os outros. 
 
 O acoplamento fraco ajuda a isolar o comportamento de um componente de outros componentes que dependem dele, aumentando a resiliência e a agilidade. Uma alteração ou uma falha em um dos componentes não deve afetar os outros componentes.
-
-Para obter mais informações sobre as melhores práticas da Nuvem AWS, consulte AWS Well-Architected Framework.
 
 ### EDA Event Driven Architecture
 
@@ -111,7 +107,7 @@ Além de toda infraestrutura oferecida ele é um banco de dados não relacional 
 
 ### Dispositivos
 
-Fly little in as men resolved. His childe the did was, worse a by of blast by, yet the one earthly heartless domestic. Was shun did none he nor to. Of and not agen it there the a of. Later childe lurked he sad the to days his deem. Known to gathered muse happy and heal heartless and could, day pile hall left fame sun rake ere. Done from there flatterers unto not. Given childe harold third his none, sought not her waste rake thou before, friends if so the to taste of. And from or he tis misery but, in of knew and old and these day. Harold was of befell scape for of. If to sins had along. Hour on to and wins formed like blazon her, was fulness from at it.
+Dispositivos que compõem a arquitetura do sistema:
 
 | Imagem | Dispositivo | Aplicação | Quantidade |
 |--------|-------------|-----------|------------|

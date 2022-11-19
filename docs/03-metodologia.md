@@ -1,7 +1,9 @@
 
 # Metodologia
 
-A metodologia contempla as definições das ferramentas utilizadas pela equipe tanto para a manutenção dos códigos e dos demais artefatos quanto para a organização do time na execução das tarefas do projeto.
+A metodologia contempla as definições das ferramentas utilizadas pela equipe tanto para a manutenção dos códigos e dos demais artefatos quanto para a organização na execução das tarefas do projeto. 
+
+O código fonte é executado em dois ambientes diferentes, um ambiente é o dispositivo IoT e o outro é o broker MQTT, onde regras de sintaxe SQL são aplicadas a tópicos. O código fonte dos dispositivos é desenvolvido em Micropython via aplicativo web ou desktop. O deploy do programa nos dispositivos é feito no próprio editor de código fonte.
 
 ## Controle de Versão
 
