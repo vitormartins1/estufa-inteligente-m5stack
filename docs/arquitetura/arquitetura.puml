@@ -1,5 +1,5 @@
 @startuml
-!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 
 !define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
 !define DEVICONS2 https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons2
@@ -36,67 +36,67 @@
 !includeurl AWSPUML/InternetOfThings/AWSIoT/alexasmarthomeskill/alexasmarthomeskill.puml
 !includeurl AWSPUML/InternetOfThings/AWSIoT/alexaskill/alexaskill.puml
 !includeurl AWSPUML/InternetOfThings/AWSIoT/action/action.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/AWSIoT.puml
+!includeurl AWSPUML/Analytics/AmazonQuickSight/AmazonQuickSight.puml
 
 
 ' LAYOUT_TOP_DOWN()
-LAYOUT_AS_SKETCH()
+ LAYOUT_AS_SKETCH()
 
-Person(usuario, "Usuario")
+Person(usuario, "Usuário")
 
-Container(m5core2, "Central Interativa", "M5Core 2", "Central de monitoramento e configuraçao dos dispositivos IoT", $sprite="thinggeneric")
-Container(m5switch, "M5Switch + RTC", "M5Atom Matrix", "Relê digital de 2 canais que controla o Led e os Exaustores", $sprite="thinglightbulb")
-Container(m5atomlite, "Env III", "M5Atom Lite", "Sensor que faz leituras de Temperatura, Umidade Relativa do Ar e Pressão Atmosférica", $sprite="thingthermostat")
-' Container(m5camera, "M5 Camera", "M5", $sprite="thingcamera")
 
-' Boundary(estufa, "Estufa Indoor") {
-' }
-
-Boundary(aws, "AWS IoT Core") {
-    Component(topicoEnv3, "dt/growtron/env3", "MQTT TOPIC")
-    Component(topicoSwitchFotoperiodoStatus, "dt/growtron/m5switch/led/status", "MQTT TOPIC")
-    Component(topicoSwitchFotoperiodoConfiguracao, "cmd/growtron/m5switch/led/fotoperiodo", "MQTT TOPIC")
-    Component(topicoSwitchExaustor, "cmd/m5switch/exaustor/status", "MQTT TOPIC")
-    System(dynamoDb, "Dynamo DB", $sprite="AmazonDynamoDB")
-    Container(m5switchShadow, "M5Switch Shadow", $sprite="shadow")
-    ' System(lambda, "Lambda", "Leitura dos dados do sensor DHT", $sprite="lambdafunction")
-    ' System(s3, "S3", "Leitura dos dados do sensor DHT", $sprite="AmazonS3")
-
-    System(rule, "Rule Engine", $sprite="rule")
+Container(m5core2central, "m5core2central", "M5 Core 2", "Central de monitoramento e configuraçao dos dispositivos IoT", $sprite="thinggeneric")
+Boundary(estufa, "Estufa") {
+    Container(m5photoperiod, "m5photoperiod", "Atom Matrix + RTC + Switch HUB", "Dispositivo que controla o fotoperíodo e os Exaustores", $sprite="thinglightbulb")
+    Container(m5envcontrol, "m5envcontrol", "Atom Lite + Switch HUB", "Dispositivo que liga e desliga o ventilador e o umidificador", $sprite="thingwindfarm")
+    Container(m5env3, "m5env3", "Atom Lite + Unit Env3", "Leituras de temperatura, umidade do ar e pressão", $sprite="thingthermostat")
+    ' Container(m5timercam, "m5timercam", "M5TimerCamF", $sprite="thingcamera")
 }
 
-Rel(usuario, m5core2, "Configura Fotoperiodo")
-Rel(usuario, m5core2, "Liga/Desliga Exaustor")
-Rel(m5core2, usuario, "Exibe dados de ambiente")
-Rel(m5core2, topicoSwitchFotoperiodoConfiguracao, "Envia nova configuração de Fotoperíodo")
-Rel(topicoSwitchFotoperiodoConfiguracao, m5switchShadow, "Define nova configuraçao de Fotoperíodo")
-Rel(m5switchShadow, m5switch, "Define nova configuraçao de Fotoperíodo")
-Rel(m5switch, topicoSwitchFotoperiodoStatus, "Envia status do Fotoperíodo quando ocorre mudança")
-Rel(m5core2, topicoSwitchExaustor, "Envia novo status do exaustor")
-Rel(topicoSwitchExaustor, m5switchShadow, "Define status do exaustor")
+Boundary(aws, "AWS") {
+    System(dynamoDb, "Dynamo DB", $sprite="AmazonDynamoDB")
+    System(iotAnalytics, "IoT Analytics", $sprite="AWSIoT")
+    System(quickSight, "QuickSight", $sprite="AmazonQuickSight")
 
-Rel(m5switchShadow, m5switch, "Define status do exaustor")
+    Boundary(iotCore, "IoT Core") {
+        System(topicos, "Tópicos MQTT", $sprite="topic")
+        System(rule, "Rule Engine", $sprite="rule")
+    }
+}
 
-Rel(m5switch, m5switchShadow, "Envia mudança local do status do exaustor")
-''Rel(m5switchShadow, m5core2, "Atualiza status do exaustor")
+Rel(usuario, m5core2central, "Configura Fotoperiodo")
+Rel(usuario, m5core2central, "Liga/Desliga Exaustor")
+Rel(usuario, m5core2central, "Monitora dados de ambiente")
 
-Rel(m5atomlite, topicoEnv3, "Envia leituras do sensor de Ambiente")
-Rel(topicoEnv3, m5core2, "Recebe os dados de Ambiente mais atuais")
-Rel(topicoEnv3, rule, "Grava os dados de Ambiente")
+Rel(m5core2central, topicos, "Envia nova configuração de Fotoperíodo")
+BiRel(m5core2central, topicos, "Envia e recebe status de relés")
+Rel(topicos, m5photoperiod, "Recebe nova configuraçao de Fotoperíodo")
+BiRel(m5photoperiod, topicos, "Envia e recebe status dos relés")
+''Rel(topicos, m5core2central, "Atualiza status do exaustor")
+BiRel(topicos, m5envcontrol, "Envia e recebe status de relés")
+
+Rel(m5env3, topicos, "Envia leituras do sensor de Ambiente")
+Rel(topicos, m5core2central, "Recebe os dados de Ambiente mais atuais")
 Rel(rule, dynamoDb, "Armazena dados usando Timestamp como chave primária")
+Rel(rule, iotAnalytics, "Envia dados de telemetria para armazenamento e análise")
 
-Rel(topicoSwitchFotoperiodoStatus, rule, "Grava o status do Fotoperiodo")
-Rel(topicoSwitchFotoperiodoConfiguracao, rule, "Grava um registro de mudança na configuração do Fotoperiodo")
-Rel(topicoSwitchExaustor, rule, "Grava o status do exaustor")
+Rel(rule, topicos, "Republica comando de mudança de status do ventilador e umidificador")
 
+Rel(topicos, rule, "Envia os dados de Ambiente")
+Rel(topicos, rule, "Envia o status dos reles")
+Rel(topicos, rule, "Envia a nova configuração de Fotoperiodo")
+
+Rel(quickSight, iotAnalytics, "Consome dados armazenados para geração de gráficos")
 ' Lay_U(aws, estufa)
-' Lay_R(estufa, m5core2)
+' Lay_R(estufa, m5core2central)
 
 ' Lay_D(topicoEnv3, topicoSwitchFotoperiodoStatus)
 ' Lay_D(topicoSwitchFotoperiodoStatus, topicoSwitchFotoperiodoConfiguracao)
 ' Lay_D(topicoSwitchFotoperiodoConfiguracao, topicoSwitchExaustor)
 
-' Lay_D(m5switch, m5atomlite)
-' Lay_D(m5atomlite, m5camera)
+' Lay_D(m5photoperiod, m5env3)
+' Lay_D(m5env3, m5camera)
 
 SHOW_LEGEND()
 @enduml
