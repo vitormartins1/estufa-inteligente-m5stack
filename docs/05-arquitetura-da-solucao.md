@@ -22,15 +22,15 @@ Num modelo de deploy Cloud-based, você pode migrar aplicações existentes para
 
 O *C4Model* é usado para visualizar a arquitetura de software do sistema. Ele consiste numa técnica de notação gráfica enxuta para modelar a arquitetura de sistemas de software. Bons diagramas de arquitetura de software ajudam na comunicação das equipes de desenvolvimento, integração eficiente de novos colaboradores, análises e avaliações de arquitetura, identificação de riscos e melhorias.
 
-O modelo é uma abordagem de abstrações que reflete como arquitetos e desenvolvedores de software pensam e constroem o software. Ele possui 4 níveis de abstração dos diagramas: Contexto, Contêiner, Componente e Código. Só é necessário criar os diagramas que gerem valor ao desenvolvimento do software. Nesse projeto usaremos apenas o diagrama de contexto e contêineres que serão suficientes para visualizar com detalhes a arquitetura de software projeta e a comunicação dos componentes entre si. 
+O modelo é uma abordagem de abstrações que reflete como arquitetos e desenvolvedores pensam e constroem o software. Ele possui 4 níveis de abstração dos diagramas: Contexto, Contêiner, Componente e Código. Só é necessário criar os diagramas que gerem valor ao desenvolvimento do software. Nesse projeto usaremos apenas o diagrama de contexto e contêineres que serão suficientes para visualizar com detalhes a arquitetura de software projetada e a comunicação dos componentes entre si. 
 
-#### Diagrama de Contexto do Sistema
+### Diagrama de Contexto do Sistema
 
 O diagrama de contexto exibe um quadro geral com pessoas e sistemas de software, em vez de tecnologias, protocolos e outros detalhes de baixo nível. É ideal para mostrar a pessoas não técnicas.
 
 ![Diagrama de Contexto](../out/docs/arquitetura/context/diagrama_arquitetural_contexto.png) 
 
-#### Diagrama de Container
+### Diagrama de Container
 
 O Diagrama de container mostra como as responsabilidades são distribuídas pela arquitetura, as principais opções de tecnologia e como os containers se comunicam entre si. Um container é uma unidade executável ou implantável separadamente que executa código ou armazena dados. 
 
@@ -39,9 +39,6 @@ Este diagrama é focado em tecnologia de alto nível e é útil para desenvolved
 ![Diagrama de Container](../out/docs/arquitetura/container/diagrama_arquitetural_container.png) 
 
 ## Projeto da Base de Dados
-O DynamoDB é um banco de dados sem servidor (serverless), significa que não é necessário gerenciar instancias ou a infraestrutura necessária para executar o banco de dados. Independente da quantidade de dados existentes nas tabelas o DynamoDB gerencia o armazenamento necessário enquanto mantém uma performance consistente, fazendo com que a equipe de TI não precise se preocupar com o escalonamento do sistema para cima ou para baixo. Os recursos de banco de dados são provisionados de forma automática.
-
-Além de toda infraestrutura oferecida ele é um banco de dados não relacional de alta performance, oferecendo rápidos tempos de resposta e flexibilidade ao manipular dados.
 
 Descrição das tabelas utilizadas no DynamoDB para armazenar dados de telemetria, configuração e mudanças de status.
 #### `environment_telemetry`
@@ -84,44 +81,35 @@ Nesta seção são apresentados os detalhes técnicos da solução criada pela e
 - Tecnologias de analytics.
 - Tecnologias de serviços.
 
-## Diagrama de Componentes
-Os componentes que fazem parte da solução aprensentados no diagrama de arquitetura são exibidos aqui com mais detalhes e informações referentes a suas funcionalidades:
- 
-![Diagrama de Componentes](img.png) 
+## Componentes
+Os componentes que fazem parte da solução apresentados no diagrama de arquitetura são exibidos aqui com mais detalhes e informações referentes a suas funcionalidades.
 
-`descrever cada um dos componentes apresentados em detalhes`
+### Tópicos MQTT
 
-A solução implementada conta com os seguintes módulos:
+Explicar o principio de funcionamento dos topicos MQTT e como eles se integram aos servicos aws. Linkar referencia a documentacao do iot-core.
 
-- Aplicação Web: Local da interface básica do sistema, onde será processado todos elementos estruturais das páginas requisitadas na Web, tais como: arquivos (HTML, CSS, JavaScript), imagens e vídeos que implementam as funcionalidades do sistema.
+### Rule Engine
 
-- Implantação: Local de armazenamento do código-fonte, onde a aplicação será colocada no ar, ou seja, é disponibilizada para uso, seja em um ambiente de desenvolvimento, de teste ou em produção.
+Explicar o que sao regras e como elas funcionam no contexto do aws iotcore. Linkar referencia a documentacao do iot-core.
 
-- Hospedagem: local de armazenamento dos arquivos estáticos que compõem as páginas web, requisitadas através dos navegadores. 
-
-- Banco de Dados: Local de armazenamento das informações processadas na aplicação e que retornam as requisições geradas nos navegadores.
-
-- Dispositivos: Dispositivos IoT utilizados na execução da solução.
-
-### Aplicação Web
-
-Of and or horror no a the, one form velvet a quoth. Of i lenore here bleak and there leave. Oer this upon stayed and grim grim me, an dying but core the. And chamber by more weak seeming. There muttered this evermore sir. Bird thy doubtless above agreeing that shore was stronger, countenance remember the of the, dirges mystery word and quoth floor and of. Is eagerly forgiveness you and soul the crest word gently. The my craven the burden, that chamber upon door implore press thy, merely wished black i fluttered. He sat the the mystery. Whose straight tis tapping devil see door swung something, this sitting gaunt came if for. Ghastly of is straight burning fowl this this the once. Said soul nevermore streaming nameless discourse bird and. 
-
-### Implantação
+### DynamoDB
 To but himnot ah and her that deemed and yes a, loved tis might hall in perchance had fondly, aisle who thee been for, his land uncouth superstition rake, in mine flatterers through heartless to paphian. Say known harold for labyrinth it not yet name. Not dome when was not, feere and soon vile this plain girls he companie. Start tis that almost sullen had save. Go dear only or for to land, hight his none knew near he to left for within, weary his but would and amiss.
 
-### Hospedagem
-Raven volume crest i meant metell, thing my have your door lenore door had gloated midnight. Suddenly much nodded the sought stepped heart not a, little pondered and this ominous my a word, more lenore kind eyes whom. And the sitting there fancy tossed throws my tis. But word ever and was, yore days within nevermore i, more before clasp its bosoms thy hath. Ghost aptly the upon heard raven ember of, the the this this from here my raven nevernevermore tinkled. Lore be ever velvet oer. Rapping raven sought his that stillness rapping gently beguiling and, so more one my chamber with that, still tis before aidenn i the my the raven, gloating my hope scarcely nevermore crest. Tell on only before.
+### IoT Analytics
+Raven volume crest i meant metell, thing my have your door lenore door had gloated midnight. Suddenly much nodded the sought stepped heart not a, little pondered and this ominous my a word, more lenore kind eyes whom. And the sitting there fancy tossed throws my tis. But word ever and was, yore days within nevermore i, more before clasp its bosoms thy hath. 
 
-### Banco de Dados
+### QuickSight
 
-O DynamoDB é um banco de dados sem servidor (serverless), significa que não é necessário gerenciar instancias ou a infraestrutura necessária para executar o banco de dados. Independente da quantidade de dados existentes nas tabelas o DynamoDB gerencia o armazenamento necessário enquanto mantém uma performance consistente, fazendo com que a equipe de TI não precise se preocupar com o escalonamento do sistema para cima ou para baixo. Os recursos de banco de dados são provisionados de forma automática.
-
-Além de toda infraestrutura oferecida ele é um banco de dados não relacional de alta performance, oferecendo rápidos tempos de resposta e flexibilidade ao manipular dados.
+Ghost aptly the upon heard raven ember of, the the this this from here my raven nevernevermore tinkled. Lore be ever velvet oer. Rapping raven sought his that stillness rapping gently beguiling and, so more one my chamber with that, still tis before aidenn i the my the raven, gloating my hope scarcely nevermore crest. Tell on only before.
 
 ### Dispositivos
 
-Dispositivos que compõem a arquitetura do sistema:
+#### m5env3
+#### m5photoperiod
+#### m5envcontrol
+#### m5core2central
+
+Dispositivos, módulos e sensores usados no sistema:
 
 | Imagem | Dispositivo | Aplicação | Quantidade |
 |--------|-------------|-----------|------------|
