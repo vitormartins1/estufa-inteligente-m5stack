@@ -1,0 +1,77 @@
+@startuml diagrama_arquitetural_contexto
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+!define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
+!define DEVICONS2 https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons2
+!define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
+!include DEVICONS/angular.puml
+!include DEVICONS/dotnet.puml
+!include DEVICONS2/dot_net.puml
+!include DEVICONS2/dot_net_wordmark.puml
+!include DEVICONS2/dotnetcore.puml
+!include DEVICONS/msql_server.puml
+!include FONTAWESOME/aws.puml
+!include FONTAWESOME/file_csv.puml
+
+!define AWSPUML https://raw.githubusercontent.com/milo-minderbinder/AWS-PlantUML/master/dist
+!includeurl AWSPUML/common.puml
+!includeurl AWSPUML/Storage/AmazonS3/AmazonS3.puml
+!includeurl AWSPUML/Storage/AmazonS3/bucket/bucket.puml
+!includeurl AWSPUML/Database/AmazonDynamoDB/AmazonDynamoDB.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/topic/topic.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/thingthermostat/thingthermostat.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/thinggeneric/thinggeneric.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/thinglightbulb/thinglightbulb.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/thingutility/thingutility.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/thingwindfarm/thingwindfarm.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/thingcamera/thingcamera.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/thinghouse/thinghouse.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/shadow/shadow.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/sensor/sensor.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/rule/rule.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/lambdafunction/lambdafunction.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/MQTTprotocol/MQTTprotocol.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/hardwareboard/hardwareboard.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/alexavoiceservice/alexavoiceservice.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/alexasmarthomeskill/alexasmarthomeskill.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/alexaskill/alexaskill.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/action/action.puml
+!includeurl AWSPUML/InternetOfThings/AWSIoT/AWSIoT.puml
+!includeurl AWSPUML/Analytics/AmazonQuickSight/AmazonQuickSight.puml
+
+'LAYOUT_LEFT_RIGHT()
+'LAYOUT_LANDSCAPE()
+'LAYOUT_TOP_DOWN()
+'LAYOUT_AS_SKETCH()
+
+Person(usuario, "Usuário")
+
+Container(m5core2central, "m5core2central", "M5 Core 2", "Monitoramento e configuraçao dos dispositivos IoT", $sprite="thinggeneric")
+System(estufa, "Estufa", "m5env3 + m5photoperiod + m5envcontrol", "Dispositivos IoT de controle do clima ambiente", $sprite="thinghouse")
+
+System_Boundary(aws, "AWS") {
+    System(dynamoDb, "Dynamo DB", $sprite="AmazonDynamoDB")
+    System(iotAnalytics, "IoT Analytics", $sprite="AWSIoT")
+    System(quickSight, "QuickSight", $sprite="AmazonQuickSight")
+    ' System(s3, "S3", $sprite="AmazonS3")
+
+    System(iotCore, "IoT Core", $sprite="topic")
+}
+
+Rel(usuario, m5core2central, "Monitora e gerencia o ambiente")
+
+Rel(m5core2central, iotCore, "Configura o fotoperíodo", "MQTT")
+BiRel(m5core2central, iotCore, "Envia e recebe status de relés", "MQTT")
+Rel(iotCore, estufa, "Recebe nova configuraçao de Fotoperíodo", "MQTT")
+BiRel(iotCore, estufa, "Envia e recebe status de relés", "MQTT")
+
+Rel(estufa, iotCore, "Envia leituras do sensor de Ambiente", "MQTT")
+Rel(iotCore, m5core2central, "Recebe os dados de Ambiente mais atuais", "MQTT")
+Rel(iotCore, dynamoDb, "Armazena dados usando Timestamp como chave primária", "Action")
+Rel(iotCore, iotAnalytics, "Envia dados de telemetria para armazenamento e análise", "Action")
+
+Rel(quickSight, iotAnalytics, "Consome dados armazenados para geração de gráficos")
+
+SHOW_LEGEND()
+@enduml

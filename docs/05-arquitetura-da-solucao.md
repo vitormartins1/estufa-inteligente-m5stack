@@ -20,9 +20,23 @@ Num modelo de deploy Cloud-based, você pode migrar aplicações existentes para
 
 ## Diagrama de Arquitetura
 
-O diagrama de arquitetura ilustra graficamente como será a estrutura da arquitetura da solução, e como cada um dos microsserviços e componentes estarão interligados. 
+O *C4Model* é usado para visualizar a arquitetura de software do sistema. Ele consiste numa técnica de notação gráfica enxuta para modelar a arquitetura de sistemas de software. Bons diagramas de arquitetura de software ajudam na comunicação das equipes de desenvolvimento, integração eficiente de novos colaboradores, análises e avaliações de arquitetura, identificação de riscos e melhorias.
 
-![Diagrama de Arquitetura](../out/docs/arquitetura/arquitetura/arquitetura.png) 
+O modelo é uma abordagem de abstrações que reflete como arquitetos e desenvolvedores de software pensam e constroem o software. Ele possui 4 níveis de abstração dos diagramas: Contexto, Contêiner, Componente e Código. Só é necessário criar os diagramas que gerem valor ao desenvolvimento do software. Nesse projeto usaremos apenas o diagrama de contexto e contêineres que serão suficientes para visualizar com detalhes a arquitetura de software projeta e a comunicação dos componentes entre si. 
+
+#### Diagrama de Contexto do Sistema
+
+O diagrama de contexto exibe um quadro geral com pessoas e sistemas de software, em vez de tecnologias, protocolos e outros detalhes de baixo nível. É ideal para mostrar a pessoas não técnicas.
+
+![Diagrama de Contexto](../out/docs/arquitetura/context/diagrama_arquitetural_contexto.png) 
+
+#### Diagrama de Container
+
+O Diagrama de container mostra como as responsabilidades são distribuídas pela arquitetura, as principais opções de tecnologia e como os containers se comunicam entre si. Um container é uma unidade executável ou implantável separadamente que executa código ou armazena dados. 
+
+Este diagrama é focado em tecnologia de alto nível e é útil para desenvolvedores de software e equipe de suporte e operações.
+
+![Diagrama de Container](../out/docs/arquitetura/container/diagrama_arquitetural_container.png) 
 
 ## Projeto da Base de Dados
 O DynamoDB é um banco de dados sem servidor (serverless), significa que não é necessário gerenciar instancias ou a infraestrutura necessária para executar o banco de dados. Independente da quantidade de dados existentes nas tabelas o DynamoDB gerencia o armazenamento necessário enquanto mantém uma performance consistente, fazendo com que a equipe de TI não precise se preocupar com o escalonamento do sistema para cima ou para baixo. Os recursos de banco de dados são provisionados de forma automática.
