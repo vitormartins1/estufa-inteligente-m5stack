@@ -57,15 +57,16 @@ System_Boundary(estufa, "Estufa") {
     ' Container(m5timercamf, "m5timercamf", "M5TimerCamF", "Capturas de timelapse e monitoramento", $sprite="thingcamera")
 }
 
+System(quickSight, "Grafana", $sprite="AmazonQuickSight")
+
 System_Boundary(aws, "AWS") {
-    System(dynamoDb, "Dynamo DB", $sprite="AmazonDynamoDB")
-    System(iotAnalytics, "IoT Analytics", $sprite="AWSIoT")
-    System(quickSight, "QuickSight", $sprite="AmazonQuickSight")
+    System_Ext(dynamoDb, "Dynamo DB", $sprite="AmazonDynamoDB")
+    System_Ext(iotAnalytics, "Timestream", $sprite="AWSIoT")
     ' System(s3, "S3", $sprite="AmazonS3")
 
     System_Boundary(iotCore, "IoT Core") {
-        System(topicos, "Tópicos MQTT", $sprite="topic")
-        System(rule, "Rule Engine", $sprite="rule")
+        Container(topicos, "Tópicos MQTT", $sprite="topic")
+        Container(rule, "Rule Engine", $sprite="rule")
     }
 }
 
@@ -81,15 +82,15 @@ BiRel(topicos, m5envcontrol, "Envia e recebe status de relés", "MQTT")
 
 Rel(m5env3, topicos, "Envia leituras do sensor de Ambiente", "MQTT")
 Rel(topicos, m5core2central, "Recebe os dados de Ambiente mais atuais", "MQTT")
-Rel(rule, dynamoDb, "Armazena dados usando Timestamp como chave primária", "Action")
-Rel(rule, iotAnalytics, "Envia dados de telemetria para armazenamento e análise", "Action")
+Rel(rule, dynamoDb, "Armazena configurações", "Action")
+Rel(rule, iotAnalytics, "Armazena dados de telemetria ambiente", "Action")
 
 Rel(rule, topicos, "Republica comando de mudança de status do ventilador e umidificador", "MQTT")
 Rel(topicos, rule, "Recebe os dados de Ambiente", "MQTT")
 Rel(topicos, rule, "Recebe o status dos reles", "MQTT")
 Rel(topicos, rule, "Recebe nova configuração de Fotoperiodo", "MQTT")
 
-Rel(quickSight, iotAnalytics, "Consome dados armazenados para geração de gráficos")
+Rel(quickSight, iotAnalytics, "Consome dados para geração de gráficos")
 ' Rel(m5timercamf, s3, "Armazena frames de timelapse", "HTTPS")
 
 'Lay_D(usuario, aws)

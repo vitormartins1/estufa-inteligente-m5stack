@@ -41,30 +41,33 @@ Este diagrama é focado em tecnologia de alto nível e é útil para desenvolved
 ## Projeto da Base de Dados
 
 Descrição das tabelas utilizadas no DynamoDB para armazenar dados de telemetria, configuração e mudanças de status.
-#### `environment_telemetry`
-|timestamp|humi|pres|temp|
-|:-------:|:--:|:--:|:--:|
-|1668382103919|63.2|100744|29.36|
-|1668381862581|60.2|100746|29.85|
-|1668381983208|62.3|100744|29.39|
-|1668382043451|63.2|100743|29.32|
-|1668383430617|59.4|100751|28.64|
+### DynamoDB
 #### `photoperiod_configuration`
 |timestamp|fim|inicio|
 |:-------:|:-:|:----:|
 |1668368150734|19:0|7:0|
 |1668373591323|23:0|5:0|
-#### `relay_status`
-|timestamp|relay_status|relay_type|
-|:-------:|:----------:|:--------:|
-|1668381577914|0|umidificador|
-|1668381577914|1|umidificador|
-|1668381573139|1|ventilador|
-|1668381521143|0|ventilador|
-|1668381515788|0|exaustor|
-|1668381473996|1|exaustor|
-|1668381468839|1|led|
-|1668381429109|0|led|
+#### `environment_control_configuration`
+|timestamp|max_humi|min_humi|max_temp|
+|:-------:|:------:|:------:|:------:|
+|1668381579314|70|60|29|
+|1668381578564|75|60|29|
+|1668381577914|70|55|28|
+
+### Timestream
+#### `environment_telemetry`
+|estufa|measure_name|time|measure_value::double|measure_value::bigint|measure_value::bool|
+|:----:|:----------:|:--:|:-------------------:|:-------------------:|:-----------------:|
+|estufa_producao|temperature|2022-11-21 01:38:43.969000000|28.34|-|-|
+|estufa_producao|humidity|2022-11-21 01:38:43.969000000|62.2|-|-|
+|estufa_producao|pressure|2022-11-21 01:38:43.969000000|-|101188|-|
+|estufa_producao|max_humidity|2022-11-21 01:38:43.969000000|-|70|-|
+|estufa_producao|min_humidity|2022-11-21 01:38:43.969000000|-|60|-|
+|estufa_producao|max_temperature|2022-11-21 01:38:43.969000000|-|29|-|
+|estufa_producao|ventilador|2022-11-21 01:38:43.969000000|-|-|false|
+|estufa_producao|umidificador|2022-11-21 01:38:43.969000000|-|-|true|
+|estufa_producao|exaustor|2022-11-21 01:38:43.969000000|-|-|true|
+|estufa_producao|luz|2022-11-21 01:38:43.969000000|-|-|true|
 
 ## Tecnologias Utilizadas
 
@@ -95,12 +98,8 @@ Explicar o que sao regras e como elas funcionam no contexto do aws iotcore. Link
 ### DynamoDB
 To but himnot ah and her that deemed and yes a, loved tis might hall in perchance had fondly, aisle who thee been for, his land uncouth superstition rake, in mine flatterers through heartless to paphian. Say known harold for labyrinth it not yet name. Not dome when was not, feere and soon vile this plain girls he companie. Start tis that almost sullen had save. Go dear only or for to land, hight his none knew near he to left for within, weary his but would and amiss.
 
-### IoT Analytics
+### Timestream
 Raven volume crest i meant metell, thing my have your door lenore door had gloated midnight. Suddenly much nodded the sought stepped heart not a, little pondered and this ominous my a word, more lenore kind eyes whom. And the sitting there fancy tossed throws my tis. But word ever and was, yore days within nevermore i, more before clasp its bosoms thy hath. 
-
-### QuickSight
-
-Ghost aptly the upon heard raven ember of, the the this this from here my raven nevernevermore tinkled. Lore be ever velvet oer. Rapping raven sought his that stillness rapping gently beguiling and, so more one my chamber with that, still tis before aidenn i the my the raven, gloating my hope scarcely nevermore crest. Tell on only before.
 
 ### Dispositivos
 

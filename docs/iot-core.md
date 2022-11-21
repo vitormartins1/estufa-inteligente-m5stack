@@ -28,16 +28,38 @@ SELECT
   END as ventilador
 FROM 'dt/growtron/m5env3'
 ```
-#### environmentTelemetryIotAnalyticsRule
-Insere o timestamp e envia o payload do tópico `dt/growtron/m5env3` para um channel do IoT Analytics.
+#### photoperiodConfigDynamoDBRule 
+Grava no DynamoDB todas as configurações de fotoperíodo publicadas no tópico `cmd/growtron/m5photoperiod/fotoperiodo` usando o timestamp como chave primária.
+```sql
+SELECT
+  concat(inicio.hora, ":", inicio.minuto) AS inicio, 
+  concat(fim.hora, ":", fim.minuto) AS fim, 
+  timestamp() as timestamp 
+FROM 'cmd/growtron/m5photoperiod/fotoperiodo'
+```
+#### environmentControlConfigDynamoDBRule 
+Grava no DynamoDB as configurações de controle de ambiente do usuário publicadas no tópico `cmd/growtron/m5envcontrol/config`.
+```sql
+SELECT
+  concat(inicio.hora, ":", inicio.minuto) AS inicio, 
+  concat(fim.hora, ":", fim.minuto) AS fim, 
+  timestamp() as timestamp 
+FROM 'cmd/growtron/m5photoperiod/fotoperiodo'
+```
+#### environmentTimestreamRule
+Envia o payload do tópico `dt/growtron/m5env3` para uma table no Timestream.
 ```sql
 SELECT 
-  *, 
-  timestamp() as timestamp 
+  humi AS humidity,
+  temp AS temperature,
+  pres AS pressure,
+  min_humi AS min_humidity,
+  max_humi AS max_humidity,
+  max_temp AS max_temperature
 FROM 'dt/growtron/m5env3'
 ```
-#### relayTelemetryIotAnalyticsRule
-Seleciona o quarto nível do tópico `dt/growtron/relay/#/status` como o alias do estado do rele e o envia junto com o timestamp para um channel do IoT Analytics.
+#### relayTimestreamRule
+Seleciona o quarto nível do tópico `dt/growtron/relay/#/status` como o tipo de rele, o estado do rele e envia para o Timestream.
 ```sql
 SELECT
   CASE topic(4)
@@ -52,24 +74,6 @@ SELECT
   CASE topic(4)
     WHEN 'exaustor' THEN relayStatus
   END as exaustor,
-  timestamp() as timestamp 
-FROM 'dt/growtron/relay/+/status'
-```
-#### photoperiodConfigDynamoDBRule 
-Grava no DynamoDB todas as configurações de fotoperíodo publicadas no tópico `cmd/growtron/m5photoperiod/fotoperiodo` usando o timestamp como chave primária.
-```sql
-SELECT
-  concat(inicio.hora, ":", inicio.minuto) AS inicio, 
-  concat(fim.hora, ":", fim.minuto) AS fim, 
-  timestamp() as timestamp 
-FROM 'cmd/growtron/m5photoperiod/fotoperiodo'
-```
-#### relayStatusDynamoDBRule
-Seleciona o quarto nível do tópico `dt/growtron/relay/#/status` como o tipo de rele, o estado do rele e o timestamp e grava no DynamoDB.
-```sql
-SELECT
-  topic(4) as relay_type,
-  relayStatus as relay_status, 
   timestamp() as timestamp 
 FROM 'dt/growtron/relay/+/status'
 ```
@@ -89,6 +93,21 @@ Exemplo:
 - m5core2central
 #### `subscribe`
 - m5env3
+### `cmd/growtron/m5env3/limits`
+Tópico que publica um comando para o dispositivo *m5env3* atualizar os parâmetros de limites de umidade e temperatura.
+
+Exemplo:
+```json
+{
+  "min_humi": 55,
+  "max_humi": 75,
+  "max_temp": 31,
+}
+```
+#### `publish`
+- m5core2central
+#### `subscribe`
+- m5env3
 ### `dt/growtron/m5env3`
 Tópico de dados que são publicadas as leituras do sensor de umidade, temperatura e pressão através do dispositivo *m5env3*.
 
@@ -97,7 +116,10 @@ Exemplo:
 {
   "humi": 66.7,
   "pres": 101137,
-  "temp": 27.37
+  "temp": 27.37,
+  "min_humi": 60,
+  "max_humi": 70,
+  "max_temp": 29,
 }
 ```
 #### `publish`

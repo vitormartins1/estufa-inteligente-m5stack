@@ -47,31 +47,32 @@
 
 Person(usuario, "Usuário")
 
-Container(m5core2central, "m5core2central", "M5 Core 2", "Monitoramento e configuraçao dos dispositivos IoT", $sprite="thinggeneric")
+System(m5core2central, "m5core2central", "M5 Core 2", "Monitoramento e configuraçao dos dispositivos IoT", $sprite="thinggeneric")
 System(estufa, "Estufa", "m5env3 + m5photoperiod + m5envcontrol", "Dispositivos IoT de controle do clima ambiente", $sprite="thinghouse")
 
+System(quickSight, "Grafana", $sprite="AmazonQuickSight")
+
 System_Boundary(aws, "AWS") {
-    System(dynamoDb, "Dynamo DB", $sprite="AmazonDynamoDB")
-    System(iotAnalytics, "IoT Analytics", $sprite="AWSIoT")
-    System(quickSight, "QuickSight", $sprite="AmazonQuickSight")
+    System_Ext(dynamoDb, "Dynamo DB", $sprite="AmazonDynamoDB")
+    System_Ext(iotAnalytics, "Timestream", $sprite="AWSIoT")
     ' System(s3, "S3", $sprite="AmazonS3")
 
-    System(iotCore, "IoT Core", $sprite="topic")
+    System_Ext(iotCore, "IoT Core", $sprite="topic")
 }
 
 Rel(usuario, m5core2central, "Monitora e gerencia o ambiente")
 
-Rel(m5core2central, iotCore, "Configura o fotoperíodo", "MQTT")
-BiRel(m5core2central, iotCore, "Envia e recebe status de relés", "MQTT")
-Rel(iotCore, estufa, "Recebe nova configuraçao de Fotoperíodo", "MQTT")
-BiRel(iotCore, estufa, "Envia e recebe status de relés", "MQTT")
+Rel(m5core2central, iotCore, "Configura o fotoperíodo")
+BiRel(m5core2central, iotCore, "Envia e recebe status de relés")
+Rel(iotCore, estufa, "Recebe nova configuraçao de Fotoperíodo")
+BiRel(iotCore, estufa, "Envia e recebe status de relés")
 
-Rel(estufa, iotCore, "Envia leituras do sensor de Ambiente", "MQTT")
-Rel(iotCore, m5core2central, "Recebe os dados de Ambiente mais atuais", "MQTT")
-Rel(iotCore, dynamoDb, "Armazena dados usando Timestamp como chave primária", "Action")
-Rel(iotCore, iotAnalytics, "Envia dados de telemetria para armazenamento e análise", "Action")
+Rel(estufa, iotCore, "Envia leituras do sensor de Ambiente")
+Rel(iotCore, m5core2central, "Recebe os dados de Ambiente mais atuais")
+Rel(iotCore, dynamoDb, "Armazena configurações")
+Rel(iotCore, iotAnalytics, "Armazena dados de telemetria ambiente")
 
-Rel(quickSight, iotAnalytics, "Consome dados armazenados para geração de gráficos")
+Rel(quickSight, iotAnalytics, "Consome dados para geração de gráficos")
 
 SHOW_LEGEND()
 @enduml
