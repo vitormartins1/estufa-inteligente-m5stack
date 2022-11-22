@@ -52,10 +52,7 @@ Envia o payload do tópico `dt/growtron/m5env3` para uma table no Timestream.
 SELECT 
   humi AS humidity,
   temp AS temperature,
-  pres AS pressure,
-  min_humi AS min_humidity,
-  max_humi AS max_humidity,
-  max_temp AS max_temperature
+  pres AS pressure
 FROM 'dt/growtron/m5env3'
 ```
 #### relayTimestreamRule
@@ -73,8 +70,7 @@ SELECT
   END as led,
   CASE topic(4)
     WHEN 'exaustor' THEN relayStatus
-  END as exaustor,
-  timestamp() as timestamp 
+  END as exaustor
 FROM 'dt/growtron/relay/+/status'
 ```
 ## Tópicos
