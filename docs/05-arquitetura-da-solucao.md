@@ -26,15 +26,13 @@ O modelo é uma abordagem de abstrações que reflete como arquitetos e desenvol
 
 ### Diagrama de Contexto do Sistema
 
-O diagrama de contexto exibe um quadro geral com pessoas e sistemas de software, em vez de tecnologias, protocolos e outros detalhes de baixo nível. É ideal para mostrar a pessoas não técnicas.
+O diagrama de contexto exibe um quadro geral com pessoas e sistemas de software, em vez de tecnologias, protocolos e outros detalhes de baixo nível.
 
 ![Diagrama de Contexto](../out/docs/arquitetura/context/diagrama_arquitetural_contexto.png) 
 
 ### Diagrama de Container
 
 O Diagrama de container mostra como as responsabilidades são distribuídas pela arquitetura, as principais opções de tecnologia e como os containers se comunicam entre si. Um container é uma unidade executável ou implantável separadamente que executa código ou armazena dados. 
-
-Este diagrama é focado em tecnologia de alto nível e é útil para desenvolvedores de software e equipe de suporte e operações.
 
 ![Diagrama de Container](../out/docs/arquitetura/container/diagrama_arquitetural_container.png) 
 
@@ -56,18 +54,13 @@ Descrição das tabelas utilizadas no DynamoDB para armazenar dados de telemetri
 
 ### Timestream
 #### `environment_telemetry`
-|estufa|measure_name|time|measure_value::double|measure_value::bigint|measure_value::bool|
-|:----:|:----------:|:--:|:-------------------:|:-------------------:|:-----------------:|
-|estufa_producao|temperature|2022-11-21 01:38:43.969000000|28.34|-|-|
-|estufa_producao|humidity|2022-11-21 01:38:43.969000000|62.2|-|-|
-|estufa_producao|pressure|2022-11-21 01:38:43.969000000|-|101188|-|
-|estufa_producao|max_humidity|2022-11-21 01:38:43.969000000|-|70|-|
-|estufa_producao|min_humidity|2022-11-21 01:38:43.969000000|-|60|-|
-|estufa_producao|max_temperature|2022-11-21 01:38:43.969000000|-|29|-|
-|estufa_producao|ventilador|2022-11-21 01:38:43.969000000|-|-|false|
-|estufa_producao|umidificador|2022-11-21 01:38:43.969000000|-|-|true|
-|estufa_producao|exaustor|2022-11-21 01:38:43.969000000|-|-|true|
-|estufa_producao|luz|2022-11-21 01:38:43.969000000|-|-|true|
+|estufa|measure_name|time|measure_value::double|measure_value::bigint|
+|:----:|:----------:|:--:|:-------------------:|:-------------------:|
+|estufa_producao|temperature|2022-11-21 01:38:43.969000000|28.34|-|
+|estufa_producao|humidity|2022-11-21 01:38:43.969000000|62.2|-|
+|estufa_producao|ventilador|2022-11-21 01:38:43.969000000|-|1|
+|estufa_producao|umidificador|2022-11-21 01:38:43.969000000|-|1|
+|estufa_producao|luz|2022-11-21 01:38:43.969000000|-|1|
 
 ## Tecnologias Utilizadas
 

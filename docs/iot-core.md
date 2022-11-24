@@ -1,24 +1,20 @@
 # IoT Core
 Informações relacionadas a Things, Shadows, Regras e Tópicos usados no AWS IoT Core.
 ## Things
-
 - m5env3
 - m5photoperiod
 - m5envcontrol
 - m5core2central
-
 ## Shadows
-
 - m5photoperiod-shadow
 - m5envcontrol-shadow
-
 ## Regras
 #### environmentControlRepublishRule
 Faz verificações na temperatura e umidade recebida pelo tópico `dt/growtron/m5env3` e republica uma mensagem no tópico `cmd/growtron/m5envcontrol/relay` com o comando de ligar ou desligar o ventilador ou o umidificador.
 ```sql
 SELECT 
   CASE true
-    WHEN humi > 75 THEN false
+    WHEN humi > 70 THEN false
     WHEN humi < 60 THEN true
     ELSE null 
   END as umidificador, 
@@ -51,26 +47,16 @@ Envia o payload do tópico `dt/growtron/m5env3` para uma table no Timestream.
 ```sql
 SELECT 
   humi AS humidity,
-  temp AS temperature,
-  pres AS pressure
+  temp AS temperature
 FROM 'dt/growtron/m5env3'
 ```
 #### relayTimestreamRule
 Seleciona o quarto nível do tópico `dt/growtron/relay/#/status` como o tipo de rele, o estado do rele e envia para o Timestream.
 ```sql
 SELECT
-  CASE topic(4)
-    WHEN 'ventilador' THEN relayStatus
-  END as ventilador,
-  CASE topic(4)
-    WHEN 'umidificador' THEN relayStatus
-  END as umidificador,
-  CASE topic(4)
-    WHEN 'led' THEN relayStatus
-  END as led,
-  CASE topic(4)
-    WHEN 'exaustor' THEN relayStatus
-  END as exaustor
+  CASE topic(4) WHEN 'ventilador' THEN relayStatus END as ventilador,
+  CASE topic(4) WHEN 'umidificador' THEN relayStatus END as umidificador,
+  CASE topic(4) WHEN 'led' THEN relayStatus END as led
 FROM 'dt/growtron/relay/+/status'
 ```
 ## Tópicos
@@ -78,17 +64,15 @@ Como padronização os tópicos irão usar apenas lowercase, números e dashes e
 Tópicos de leitura e feedback de estados possuem o prefixo *'dt/'* indicando que o tópico se refere a dados, enquanto tópicos de comando usam o prefixo *'cmd/'*.
 ### `cmd/growtron/m5env3/read`
 Tópico que publica um comando para o dispositivo *m5env3* realizar uma leitura do sensor e publicar no tópico de dados correspondente.
-
 Exemplo:
 ```json
 {
   "newSensorRead": true
 }
 ```
-#### `publish`
-- m5core2central
-#### `subscribe`
-- m5env3
+|`publish`|`subscribe`|
+|:-------:|:---------:|
+|m5core2central|m5env3|
 ### `cmd/growtron/m5env3/limits`
 Tópico que publica um comando para o dispositivo *m5env3* atualizar os parâmetros de limites de umidade e temperatura.
 
@@ -100,10 +84,9 @@ Exemplo:
   "max_temp": 31,
 }
 ```
-#### `publish`
-- m5core2central
-#### `subscribe`
-- m5env3
+|`publish`|`subscribe`|
+|:-------:|:---------:|
+|m5core2central|m5env3|
 ### `dt/growtron/m5env3`
 Tópico de dados que são publicadas as leituras do sensor de umidade, temperatura e pressão através do dispositivo *m5env3*.
 
@@ -118,12 +101,11 @@ Exemplo:
   "max_temp": 29,
 }
 ```
-#### `publish`
-- m5env3
-#### `subscribe`
-- m5core2central
-- environmentTelemetryIotAnalyticsRule
-- environmentControlRepublishRule
+|`publish`|`subscribe`|
+|:-------:|:---------:|
+|m5env3|m5core2central|
+||environmentTelemetryIotAnalyticsRule|
+||environmentControlRepublishRule|
 ### `cmd/growtron/m5photoperiod/fotoperiodo`
 Tópico de comando que publica a configuração de início e fim do fotoperíodo. O dispositivo *m5photoperiod* se inscreve neste tópico para receber e configurar o novo fotoperíodo. A regra *photoperiodConfigDynamoDBRule* se inscreve para registrar a nova configuração numa tabela.
 
@@ -140,11 +122,10 @@ Exemplo:
   }
 }
 ```
-#### `publish`
-- m5core2central
-#### `subscribe`
-- m5photoperiod
-- photoperiodConfigDynamoDBRule
+|`publish`|`subscribe`|
+|:-------:|:---------:|
+|m5core2central|m5photoperiod|
+||photoperiodConfigDynamoDBRule|
 ### `cmd/growtron/m5photoperiod/exaustor`
 Tópico de comando que publica o estado do exaustor. O dispositivo *m5photoperiod* se inscreve neste tópico para ligar ou desligar o exaustor de acordo com o comando recebido.
 
@@ -154,10 +135,9 @@ Exemplo:
   "exaustor": true
 }
 ```
-#### `publish`
-- m5core2central
-#### `subscribe`
-- m5photoperiod
+|`publish`|`subscribe`|
+|:-------:|:---------:|
+|m5core2central|m5photoperiod|
 ### `cmd/growtron/m5envcontrol/relay`
 Tópico de comando que publica o estado do umidificador e ventilador. O dispositivo *m5envcontrol* se inscreve neste tópico para ligar ou desligar o umidificador ou o ventilador de acordo com o comando recebido.
 
@@ -168,11 +148,10 @@ Exemplo:
   "ventilador": true
 }
 ```
-#### `publish`
-- m5core2central
-- environmentControlRepublishRule
-#### `subscribe`
-- m5envcontrol
+|`publish`|`subscribe`|
+|:-------:|:---------:|
+|m5core2central|m5envcontrol|
+|environmentControlRepublishRule||
 ### `dt/growtron/relay/+/status`
 Tópico usado pelos relés para informar quando houver uma mudança de estado. O nível do tópico com o "+" será o tipo do relé. Os seguintes tipos serão usados:
 - dt/growtron/relay/**led**/status
@@ -186,15 +165,11 @@ Exemplo:
   "relayStatus": 1
 }
 ```
-#### `publish`
-- m5photoperiod
-- m5envcontrol
-#### `subscribe`
-- relayStatusDynamoDBRule
-- relayTelemetryIotAnalyticsRule
-
+|`publish`|`subscribe`|
+|:-------:|:---------:|
+|m5photoperiod|relayStatusDynamoDBRule|
+|m5envcontrol|relayTelemetryIotAnalyticsRule|
 # Documentação
-
 <ol>
 <li><a href="01-documentacao-de-contexto.md"> Documentação de Contexto</a></li>
 <li><a href="02-especificacao-do-projeto.md"> Especificação do Projeto</a></li>
