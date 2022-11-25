@@ -42,7 +42,7 @@ Claro que o mundo moderno modela o ser humano para a conveniência, ou seja, tud
 
 Mas é interessante, mesmo que uma vez na vida, que o humano moderno cultive nem que seja uma plantinha de alface para ter a noção do que é cultivar um alimento. Diante das dificuldades existentes no cultivo caseiro, da chegada do 5G e das conveniências do mundo moderno, usar uma solução de automação é muito útil pois gera valor ao cultivo e ao cultivador.
 
-O meio ambiente está no centro de tudo, estimular o plantio de árvores e o cultivo caseiro para consumo próprio já é uma necessidade diante do cenário de desmatamento e aquecimento global. Diversas ações para reverter esse cenário global agora são possíveis com o 5G e a internet das coisas e projetos complementares nessa temática estão sendo estudados, como "gamificar" o replantio de espécies nativas em locais desmatados com competições de drones e drones automatizados que vasculham e mapeiam uma região de reflorestamento e realizam  monitoramento e coleta de dados de telemetria da evolução do reflorestamento.
+O meio ambiente está no centro de tudo, estimular o plantio de árvores e o cultivo caseiro para consumo próprio já é uma necessidade diante do cenário de desmatamento e aquecimento global.
 
 ## Público-Alvo
 
