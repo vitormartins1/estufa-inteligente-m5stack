@@ -96,10 +96,7 @@ Exemplo:
 {
   "humi": 66.7,
   "pres": 101137,
-  "temp": 27.37,
-  "min_humi": 60,
-  "max_humi": 70,
-  "max_temp": 29,
+  "temp": 27.37
 }
 ```
 |`publish`|`subscribe`|
@@ -156,7 +153,7 @@ Exemplo:
 ### `dt/growtron/relay/+/status`
 Tópico usado pelos relés para informar quando houver uma mudança de estado. O nível do tópico com o "+" será o tipo do relé. Os seguintes tipos serão usados:
 - dt/growtron/relay/**led**/status
-- dt/growtron/relay/**exaustor**/status`
+- dt/growtron/relay/**exaustor**/status
 - dt/growtron/relay/**umidificador**/status
 - dt/growtron/relay/**ventilador**/status
   
