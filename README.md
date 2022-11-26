@@ -1,7 +1,8 @@
 # Estufa Inteligente M5Stack
  Estufa inteligente com soluções automatizadas de IoT.
 
- <iframe width="560" height="315" src="https://www.youtube.com/embed/enBlLgzpFUg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/enBlLgzpFUg/0.jpg)](https://www.youtube.com/watch?v=enBlLgzpFUg)
+
 
 #### Média de Temperatura e Umidade Relativa do Ar e Estado dos Relés
 Eventos de ligar e desligar do ventilador, umidificador e luzes influenciam diretamente no clima ambiente. O gráfico mostra a relação direta entre as variações de medições e ativação dos dispositivos de controle de clima. É um artefato que visa comprovar a eficácia do sistema de automação. 
