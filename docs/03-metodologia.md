@@ -12,10 +12,6 @@ O projeto segue a seguinte convenção para o nome de branches:
 - `main`: versão estável já testada e pronta para produção
 - `development`: versão de desenvolvimento de novas features do software
 
-Será adotado o modelo trunk-based development para que o projeto sempre seja desenvolvido num estado tal que possa ser passado para produção.
-
-A branch development será uma feature branch e será usada para criação e desenvolvimento de novas features. Quando o desenvolvimento da feature terminar o código será efetivamente mesclado com a main branch e deverá estar pronto para produção.
-
 ## Gerenciamento de Projeto
 
 ### Processo
@@ -49,19 +45,12 @@ As ferramentas empregadas no projeto são:
 | Diagrama de Arquitetura | C4 Plant UML | https://github.com/plantuml-stdlib/C4-PlantUML
 | Edição de Código Fonte | UIFlow Web IDE | https://flow.m5stack.com/ |
 | Instalação de Firmware | UIFlow Firmware Burning Tool | http://docs.m5stack.com/en/download
-| Broker MQTT | AWS IoT Core | https://aws.amazon.com/pt/iot-core/ |
-| Análise de Dados | AWS IoT Analytics | https://aws.amazon.com/pt/iot-analytics/ |
-| Geração de Gráficos | Amazon QuickSight | https://docs.aws.amazon.com/quicksight/latest/user/welcome.html |
 
 O editor de código fonte UIFlow Web IDE foi escolhido pois oferece programação visual por blocos e uma capacidade de rápida prototipação de ideias sem a necessidade de configurações complexas e codificação verbosa. Além disso possuiu um sistema de deploy e gerenciamento de arquivos nos dispositivos. 
 
 Uma alternativa ao uso do UIFlow Web IDE seria utilizar o VisualStudio Code e desenvolver o código fonte com micropyton em conjunto com o SDK dos dispositivos M5Stack, o SDK da AWS e a biblioteca de interface de usuário LVGL. Outra alternativa seria usar no VisualStudio o .Net nanoFramework e a linguagem C# pois oferecem suporte aos dispositivos M5Stack e ao SDK da AWS, tendo como único ponto negativo a ausência de uma interface gráfica de usuário de qualidade que possa ser usada a nível de usuário final. 
 
 O UIFlow Firmware Burning Tool é utilizado para atualizar o firmware dos dispositivos M5Stack e definir configurações de boot e wifi. Também é um repositório de projetos de exemplo que podem ser baixados diretamente no dispositivo para testes. 
-
-O serviço IoT Core da AWS exerce mais que a função  de um broker MQTT, ele possui lógicas de negócio,  regras de roteamento de tópicos, ações de gravação de registros na base de dados e registro de dispositivos e certificados. 
-
-O Amazon QuickSight é uma plataforma de Bussines Inteligence com muitas funcionalidades avançadas. Porém usaremos somente para geração de gráficos de telemetria ambiente para validar os objetivos buscados na criação do sistema. Os dados usados pelo QuickSight para gerar os gráficos são gerenciados pelo serviço IoT Analytics e podem ser usados por outros serviços de dados futuramente para uma análise mais profunda dos dados captados pelo sistema.
 
 # Documentação
 
