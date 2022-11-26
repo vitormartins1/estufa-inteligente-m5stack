@@ -1,5 +1,7 @@
 # IoT Core
-Informações relacionadas a Things, Shadows, Regras e Tópicos usados no AWS IoT Core.
+
+O serviço IoT Core exerce mais que a função  de um broker MQTT, ele possui lógicas de negócio,  regras de roteamento de tópicos, ações de gravação de registros na base de dados e registro de dispositivos e certificados. 
+
 ## Things
 - m5env3
 - m5photoperiod
