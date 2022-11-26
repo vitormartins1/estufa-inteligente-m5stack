@@ -10,13 +10,6 @@ Layout padrão da aplicação que será utilizado em todas as páginas com a def
 > - [Website Page Layouts](http://www.cellbiol.com/bioinformatics_web_development/chapter-3-your-first-web-page-learning-html-and-css/website-page-layouts/)
 > - [Perfect Liquid Layout](https://matthewjamestaylor.com/perfect-liquid-layouts)
 > - [How and Why Icons Improve Your Web Design](https://usabilla.com/blog/how-and-why-icons-improve-you-web-design/)
-## Aplicação Web
-
-- Necessita autenticação de usuário.
-
-## Dispositivo de Monitoramento M5Stack Core2
-
-- Por ser um dispositivo que faz parte da arquitetura e tem acesso restrito ao local onde o wifi está conectado não será necessário autenticação de usuário.
 
 # Documentação
 
