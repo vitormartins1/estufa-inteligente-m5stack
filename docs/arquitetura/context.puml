@@ -50,7 +50,7 @@ Person(usuario, "Usuário")
 System(m5core2central, "m5core2central", "M5 Core 2", "Monitoramento e configuraçao dos dispositivos IoT", $sprite="thinggeneric")
 System(estufa, "Estufa", "m5env3 + m5photoperiod + m5envcontrol", "Dispositivos IoT de controle do clima ambiente", $sprite="thinghouse")
 
-System(quickSight, "Grafana", $sprite="AmazonQuickSight")
+System_Ext(quickSight, "Grafana", $sprite="AmazonQuickSight")
 
 System_Boundary(aws, "AWS") {
     System_Ext(dynamoDb, "Dynamo DB", $sprite="AmazonDynamoDB")
