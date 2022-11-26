@@ -25,10 +25,18 @@ Distribuir de forma coerente o conteúdo a ser apresentado, dentro do tempo dete
 > - [How to make a great presentation](https://www.ted.com/playlists/574/how_to_make_a_great_presentation)
 
 ## Monitoramento de Automação de Ambiente
-#### Média de Temperatura e Umidade Relativa do Ar por Minuto e Estado dos Relés
-O estado dos relés influencia diretamente na temperatura e umidade do ambiente. A umidade relativa do ar deve ficar entre os limites de 60% e 70% enquanto a temperatura deve ficar a baixo de 29 °C. Um regra é aplicada a cada atualização do sensor de ambiente que envia um evento para o dispositivo ligar ou desligar o umidificador ou o ventilador de acordo com os limites.
-<img src="estufa_inteligente_telemetry_dataset_analysis_2.jpg">
+#### Média de Temperatura e Umidade Relativa do Ar e Estado dos Relés
+Eventos de ligar e desligar do ventilador, umidificador e luzes influenciam diretamente no clima ambiente. O gráfico mostra a relação direta entre as variações de medições e ativação dos dispositivos de controle de clima. É um artefato que visa comprovar a eficácia do sistema de automação. 
 
+A umidade relativa do ar deve ficar entre os limites de 60% e 70% enquanto a temperatura deve ficar a baixo de 29 °C. Uma regra é aplicada a cada atualização do sensor de ambiente que envia um evento para o dispositivo *m5envcontrol* ligar ou desligar o umidificador ou o ventilador de acordo com os limites de umidade e temperatura definidos.
+
+**25 a 26 de novembro de 2022**
+![Gráfico 25 a 26 de novembro](graficos/grafana-estufa-inteligente-25-26-novembro.png)
+
+**24 a 25 de novembro de 2022**
+![Gráfico 24 a 25 de novembro](graficos/grafana-estufa-inteligente-24-25-novembro.png)
+
+Em dias mais úmidos e amenos, o umidificador fica pouco ligado e em dias mais secos tente a ligar mais vezes durante o dia. 
 # Documentação
 
 <ol>
