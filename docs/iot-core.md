@@ -39,8 +39,7 @@ FROM 'cmd/growtron/m5photoperiod/fotoperiodo'
 Grava no DynamoDB as configurações de controle de ambiente do usuário publicadas no tópico `cmd/growtron/m5envcontrol/config`.
 ```sql
 SELECT
-  concat(inicio.hora, ":", inicio.minuto) AS inicio, 
-  concat(fim.hora, ":", fim.minuto) AS fim, 
+  -- todo
   timestamp() as timestamp 
 FROM 'cmd/growtron/m5photoperiod/fotoperiodo'
 ```
@@ -53,7 +52,7 @@ SELECT
 FROM 'dt/growtron/m5env3'
 ```
 #### relayTimestreamRule
-Seleciona o quarto nível do tópico `dt/growtron/relay/#/status` como o tipo de rele, o estado do rele e envia para o Timestream.
+Seleciona o quarto nível do tópico `dt/growtron/relay/+/status` como o tipo de rele, o estado do rele e envia para o Timestream.
 ```sql
 SELECT
   CASE topic(4) WHEN 'ventilador' THEN relayStatus END as ventilador,
