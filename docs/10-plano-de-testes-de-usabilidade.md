@@ -26,5 +26,4 @@ As referências abaixo irão auxiliá-lo na geração do artefato "Plano de Test
 <li><a href="11-registro-de-testes-de-usabilidade.md"> Registro de Testes de Usabilidade</a></li>
 <li><a href="12-apresentacao-do-projeto.md"> Apresentação do Projeto</a></li>
 <li><a href="13-referencias.md"> Referências</a></li>
-<li><a href="iot-core.md">IoT Core</a></li>
 </ol>
