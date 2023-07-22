@@ -35,29 +35,6 @@
 |**Motivação** | Cuidar da filha 
 |**Frustrações** | Não consegue uma colheita de qualidade para extrair o óleo medicinal que sua filha necessita |
 
-### <span style="color:Green">**`Mike Tyson`**
-
-|<img src="https://istoe.com.br/wp-content/uploads/2022/07/mike-tyson.jpg">|**Mike Tyson** <br> 56 anos   |
-|:---------------------------------------:|:-------------------------------:|
-|**Ocupação** | Ex-pugilista, altualmente no ramo de flores medicinais
-|**Motivação** | Expandir seu negócio de flores
-|**Frustrações** | Verão extremamente quente e seco da California diminui sua colheita considerávelmente |
-
-### <span style="color:Green">**`Filipe Ret`**
-
-|<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLNWVbrIyscg-ijbfWZiwHlvln0gBt6l-s--Zo4834dkG2_WSpWtxA-enF5PXGlI9KVJU&usqp=CAU">|**Filipe Ret** <br> 33 anos   |
-|:--------------------------:|:-------------:|
-|**Ocupação** | Rapper, novo no ramo do agronegócio californiano
-|**Motivação** | Oferecer a melhor qualidade para seus clientes
-|**Frustrações** | Pouco tempo para gerenciar e garantir um padrão de qualidade para o negócio pois mora no Brasil |
-
-### <span style="color:Green">**`Anitta`**
-
-|<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsCTAce31_ExqcVtv1Z6EcYO7etIz68aLfKg&usqp=CAU">|**Anitta** <br> 28 anos   |
-|:--------------------------:|:-------------:|
-|**Ocupação** | Cantora
-|**Motivação** | Se conectar mais com a natureza 
-|**Frustrações** | Rotina alta de shows impede de dar atenção a seu hobbie de cultivar flores |
 
 ## Histórias de Usuários
 
